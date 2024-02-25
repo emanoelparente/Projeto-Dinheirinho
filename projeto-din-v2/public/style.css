@@ -1,0 +1,69 @@
+body{
+    /*background-color: antiquewhite;*/
+    background-image: url('../images/tela-inicial-fundo.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins';
+}
+
+.area-login img{
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+}
+
+.botao button{
+    width: 80%;
+    border-radius: 100px;
+    background-color: #1B512D;
+    border: 0px;
+    
+}
+.botao{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.botao-login button{
+    width: 100%;
+    border-radius: 100px;
+    background-color: #55A630;
+    border: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+}
+.botao-login{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.botao-registre button{
+    width: 100%;
+    border-radius: 100px;
+    background-color: #55A630;
+    border: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+    
+}
+.botao-registre{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+/********************************/
+
+.area-login{
+    text-align: center;
+}

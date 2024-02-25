@@ -1,0 +1,14 @@
+Usuário está na página INDEX, porém a tela é de registro.
+Quando usuário imputa os dados é direcionado para uma página
+A página possui rota de registro
+Informa mensagem de usuário registrado
+
+- No diretório controler/arquivo auth.js mudei todos os
+nomes que estavam "register" para "index"
+
+Quando eu entro no localhost:5000 aparece a página de cadastro,
+quando insiro os dados e submeto, a URL muda para localhost:5000/auth/cadastro, permanecendo na mesma tela.
+Quando clico em login aparece a mensagem Cannot GET /login e a URL muda para localhost: 5000/login,
+Quando eu altero o router.post('/login', (req, res) => {
+    res.render('login')
+}) para get, ai aparece o formulário de login. Quando submeto os dados de login a URL muda para localhost:5000/auth/login e aparece a mensagem no navegador "Hum… Não consigo chegar a esta página"
