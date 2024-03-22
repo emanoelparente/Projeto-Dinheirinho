@@ -1,98 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style.css">
+  <title>Document</title>
 </head>
+
 <body>
 
   {{#if message}}
-            <h4 class="alert alert-success mt-4">{{message}}</h4>
+  <h4 class="alert alert-success mt-4">{{message}}</h4>
   {{/if}}
 
-    <div class="container" style="background-color: rgba(0, 0, 0, 0); font-family: ;">
-        <!--<div class="row justify-content-md-center" style="background-color: blueviolet; padding-top: 50px;"> -->
-          
-          <div class="col-md-auto" style="background-color: rgba(0, 0, 255, 0);">
-            <div class="row" style="background-color: rgba(216, 112, 147, 0); padding-top: 4%;">
-                
-                
-                <div class="col" style="background-color: rgb(255, 255, 255); padding-top: 10%; padding-right: 30px; margin-left: 100px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
-                    <div class="area-login">
-                        <img src="images/logo-dinheirinho.png" alt="teste">
-                        <p style="padding-top: 5px;">Finanças pessoais</p>
-                        <h1 style="padding-top: 25px; font-size: 25px; font-weight: 600;">Bem vindo de volta!</h1>
-                        <p style="padding-top: 10px;">Faça Login e tome uma limonada</p>
-                        <div class="botao-login">
-                        <a href="/login"><button type="submit" class="btn btn-primary" style="margin-top: 30px;" >LOGIN</button></a>
-                        </div>
-                    </div>
-                </div>
+  <div class="container" style="background-color: rgba(0, 0, 0, 0); font-family: ;">
+    <!--<div class="row justify-content-md-center" style="background-color: blueviolet; padding-top: 50px;"> -->
+
+    <div class="col-md-auto" style="background-color: rgba(0, 0, 255, 0);">
+      <div class="row" style="background-color: rgba(216, 112, 147, 0); padding-top: 4%;">
 
 
-                <div class="col" style="background-color: #77AF51; padding-top: 40px; padding-left: 120px; padding-right: 120px; padding-bottom: 60px; margin-right: 100px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
-
-                <div><h1 style="color: white; font-size: 35px; font-weight: 600;">Criar uma conta</h1></div>
-
-                <div class="icones-area-cadastro" style="background-color: rgba(0, 0, 0, 0); padding: 10px; display: flex; justify-content: center;">
-                    <div class="botao-facebook">
-                        <img src="images/facebook-button.png" style="width: 40px; height: 40px; background-color: rgba(0, 0, 255, 0); margin-right: 10px;" alt="">
-                    </div>
-                    <div class="botao-google">
-                        <img src="images/google-button.png" style="width: 40px; height: 40px; background-color: rgba(137, 43, 226, 0); margin-left: 10px;" alt="">
-                    </div>
-                </div>
-                <p class="h6" style="text-align: center; color: white; margin-top: 20px;">Ou registre-se usando o email</p>  
-                
-                    <form action="/auth/cadastro" method="POST">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img src="images/usuario.png" alt="" style="height: 20px; height: 20px;"></span>
-                            </div>
-                            <input type="text" class="form-control" id="name" name = "name" placeholder="Usuário" aria-label="Usuário" aria-describedby="basic-addon1" style="border-left: 0px;">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img src="images/email.png" alt="" style="height: 15px; height: 15px;"></span>
-                            </div>
-                            <input type="email" class="form-control" id="email" name = "email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" style="border-left: 0px;">
-                        </div>
-
-                
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img src="images/cadeado.png" alt="" style="height: 20px; height: 20px;"></span>
-                            </div>
-                            <input type="password" class="form-control" id="password" name = "password" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1" style="border-left: 0px;">
-                        </div>
-                        
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img src="images/cadeado.png" alt="" style="height: 20px; height: 20px;"></span>
-                            </div>
-                            <input type="password" class="form-control" id="passwordConfirm" name = "passwordConfirm" placeholder="Confirmar senha" aria-label="confirmarSenha" aria-describedby="basic-addon1" style="border-left: 0px;">
-                        </div>
-
-                        <div class="botao">
-                            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">CADASTRAR</button>
-                        </div>
-                      </form>
-                </div>
-              </div>
+        <div class="col"
+          style="background-color: rgb(255, 255, 255); padding-top: 10%; padding-right: 30px; margin-left: 100px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+          <div class="area-login">
+            <img src="/images/logo-dinheirinho.png" alt="teste">
+            <p style="padding-top: 5px;">Finanças pessoais</p>
+            <h1 style="padding-top: 25px; font-size: 25px; font-weight: 600;">Bem vindo de volta!</h1>
+            <p style="padding-top: 10px;">Faça Login e tome uma limonada</p>
+            <div class="botao-login">
+              <a href="/login"><button type="submit" class="btn btn-primary"
+                  style="margin-top: 30px;">LOGIN</button></a>
+            </div>
           </div>
-          
-        <!--</div> -->
-        
+        </div>
+
+
+        <div class="col"
+          style="background-color: #77AF51; padding-top: 40px; padding-left: 120px; padding-right: 120px; padding-bottom: 60px; margin-right: 100px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
+
+          <div>
+            <h1 style="color: white; font-size: 35px; font-weight: 600;">Criar uma conta</h1>
+          </div>
+
+          <div class="icones-area-cadastro"
+            style="background-color: rgba(0, 0, 0, 0); padding: 10px; display: flex; justify-content: center;">
+            <div class="botao-facebook">
+              <img src="/images/facebook-button.png"
+                style="width: 40px; height: 40px; background-color: rgba(0, 0, 255, 0); margin-right: 10px;" alt="">
+            </div>
+            <div class="botao-google">
+              <img src="/images/google-button.png"
+                style="width: 40px; height: 40px; background-color: rgba(137, 43, 226, 0); margin-left: 10px;" alt="">
+            </div>
+          </div>
+          <p class="h6" style="text-align: center; color: white; margin-top: 20px;">Ou registre-se usando o email</p>
+
+          <form action="/auth/cadastro" method="POST">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img
+                    src="/images/usuario.png" alt="" style="height: 20px; height: 20px;"></span>
+              </div>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Usuário" aria-label="Usuário"
+                aria-describedby="basic-addon1" style="border-left: 0px;">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img
+                    src="/images/email.png" alt="" style="height: 15px; height: 15px;"></span>
+              </div>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" aria-label="Email"
+                aria-describedby="basic-addon1" style="border-left: 0px;">
+            </div>
+
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img
+                    src="/images/cadeado.png" alt="" style="height: 20px; height: 20px;"></span>
+              </div>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Senha"
+                aria-label="Senha" aria-describedby="basic-addon1" style="border-left: 0px;">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img
+                    src="/images/cadeado.png" alt="" style="height: 20px; height: 20px;"></span>
+              </div>
+              <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
+                placeholder="Confirmar senha" aria-label="confirmarSenha" aria-describedby="basic-addon1"
+                style="border-left: 0px;">
+            </div>
+
+            <!-- 
+              messagePasswordNotEquals
+              messageRegisterSuccessfull
+              messageExistsEmail
+            -->
+
+            {{#if messagePasswordNotEquals}}
+            <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">{{messagePasswordNotEquals}}</h4>
+            {{/if}}
+
+            {{#if messageExistsEmail}}
+            <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">{{messageExistsEmail}}</h4>
+            {{/if}}
+
+            {{#if messageRegisterSuccessfull}}
+            <h4 class="alert alert-succes mt-4" style="font-size: 15px; text-align:center">{{messageRegisterSuccessfull}}</h4>
+            {{/if}}
+
+            <div class="botao">
+              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">CADASTRAR</button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
+
+    <!--</div> -->
+
+  </div>
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

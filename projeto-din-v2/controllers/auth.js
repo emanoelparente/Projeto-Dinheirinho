@@ -20,11 +20,11 @@ exports.cadastro = (req, res) => {
         }
         if(results.length > 0){
             return res.render('cadastro',{
-                message: 'Esse e-mail já está em uso'
+                messageExistsEmail: 'Este e-mail já está em uso'
             })
         }else if (password !== passwordConfirm){
             return res.render('cadastro',{
-                message: 'As senhas não correspondem'
+                messagePasswordNotEquals: 'As senhas não correspondem'
             });
         }
 
@@ -38,8 +38,8 @@ exports.cadastro = (req, res) => {
                 console.log(error);
             }else{
                 console.log(results);
-                return res.render('login', {
-                    message: 'Cadastro realizado'
+                return res.render('login', { /*'/login'*/
+                    messageRegisterSuccessfull: 'Cadastro realizado'
                     
                 });
             }
@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
 
         if (!email || !password) {
             return res.status(400).render('login', {
-                message: 'Por favor, forneça e-mail e senha'
+                messageEmptyField: 'Por favor, forneça e-mail e senha'
             });
         }
 
@@ -70,7 +70,7 @@ exports.login = async (req, res) => {
 
             if (!results || results.length === 0 || !(await bcrypt.compare(password, results[0].password))) {
                 res.status(401).render('login', {
-                    message: 'Email ou senha está incorreto'
+                    messageErrorEmailPassword: 'Email ou senha está incorreto'
                 });
             } else {
                 /*const id = results[0].id;
