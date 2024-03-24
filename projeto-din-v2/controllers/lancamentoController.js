@@ -1,19 +1,22 @@
+const lancamentoModel = require("../models/lancamentoModel");
+
 class LancamentoController{
 
     buscar (){
-        return "Buscando lancamentos....";
+        //return "Listando lancamentos....";
+        return lancamentoModel.listar();
     }
 
-    criar(){
-        return "Criando lancamento....";
+    criar(novoLancamento){
+        return lancamentoModel.criar(novoLancamento);
     }
 
-    atualizar(id){
-        return "Alterando lancamento numero "+ id + "...";
+    atualizar(lancamentoAtualizado, id){
+        return lancamentoModel.atualizar(lancamentoAtualizado, id);
     }
 
     deletar(id){
-        return "Deletando lancamneto numero " + id + "...";
+        return lancamentoModel.deletar(id);
     }
 
 }

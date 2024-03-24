@@ -8,18 +8,22 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
     <!--<link rel="stylesheet" href="/style.css"> -->
     <style>
         body {
             font-family: poppins;
-            padding:0%;
+            padding: 0%;
             margin: 0%;
         }
-        
     </style>
 
     <title>Document</title>
 </head>
+
 
 <body>
     <nav style="background-color: #77AF51;">
@@ -107,16 +111,233 @@
         <div style="background-color: rgba(255, 255, 0, 0); padding: 0%;">
             <div style="background-color: rgba(26, 100, 11, 0); padding-right: 0%; padding-left:3%; display:flex;">
 
-                <div class="card" style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); margin-right:3%;">
+                <div class="card"
+                    style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); margin-right:3%;">
                     <div class="card-header" style="background-color: #5D8165; padding-bottom: 0%">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Novo lançamento</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"
-                            style="background-color: #C0D7C5; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#5D8165; border-top:0px;"><img
-                                src="/images/icon-novo-lancamento.png" alt="Novo lançamento"
-                                style="width: 90px; height:90px;"></li>
+                            style="background-color: #C0D7C5; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#5D8165; border-top:0px;">
+                            <img src="/images/icon-novo-lancamento.png" alt="Novo lançamento"
+                                style="width: 90px; height:90px;">
+                        </li>
                     </ul>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Launch demo modal
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Novo lançamento</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/teste" method="post">
+                                        <span style="font-size: 15px; font-weight: 600;">Tipo de lançamento</span>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="entradaRadio">
+                                            <label class="form-check-label" for="entradaRadio">
+                                                Entrada
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="saidaRadio" checked>
+                                            <label class="form-check-label" for="saidaRadio">
+                                                Saída
+                                            </label>
+                                        </div>
+                                        <!-- Categoria para Entrada -->
+                                        <select class="form-select" id="categoriaEntrada"
+                                            aria-label="Default select example">
+                                            <option selected>Categoria Entrada</option>
+                                            <option value="1">Salario</option>
+                                            <option value="2">Emprestimo</option>
+                                            <option value="3">Redimentos</option>
+                                            <option value="4">Recebimento de clientes</option>
+                                        </select>
+                                        <!-- Categoria para Saída -->
+                                        <select class="form-select" id="categoriaSaida" style="display: none;"
+                                            aria-label="Default select example;">
+                                            <option selected>Categoria Saída</option>
+                                            <option value="1">Alimentação</option>
+                                            <option value="2">Moradia</option>
+                                            <option value="3">Saúde</option>
+                                            <option value="4">Lazer</option>
+                                        </select>                                
+
+                                        <select class="form-select" id="forma" aria-label="Default select example">
+                                            <option selected>Forma</option>
+                                            <option value="1">Dinheiro/moeda</option>
+                                            <option value="2">Pix</option>
+                                            <option value="3">TED</option>
+                                            <option value="4">DOC</option>
+                                        </select>
+                                        
+                                        <div class="form-group">
+                                            
+                                            <label for="data-pagamento">Data</label>
+                                            <!-- Datepicker as text field -->
+                                            <div class="input-group date" data-date-format="dd/mm/yyyy">
+                                                <input type="text" class="form-control" placeholder="dd/mm/aaaa">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        Valor
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">R$</span>
+                                            <input type="text" class="form-control"
+                                                aria-label="Dollar amount (with dot and two decimal places)">
+                                        </div>
+
+                                        <div class="form-group">
+                                            
+                                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </form>
+
+                                    <form action="/lancamentos" method="post">
+                                        <label>Tipo_de_lançamento</label>
+                                        <input type="text">
+
+                                        <label>Categoria</label>
+                                        <input type="text">
+
+                                        <label>Forma</label>
+                                        <input type="text">
+
+                                        <label>Data_de_ocorrencia</label>
+                                        <input type="text">
+
+                                        <label>Valor</label>
+                                        <input type="text">
+
+                                        <label>Descrição</label>
+                                        <input type="text">
+
+                                        <button type="submit">Enviar</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                                    <button type="submit" class="btn btn-primary">SALVAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Button trigger modal -->
+                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Launch demo modal
+                    </button> -->
+
+                    <!-- Modal -->
+                    <!--
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Novo lançamento</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/####" method="POST">
+                                        <span style="background-color: #4A95DB;">Tipo de lançamento</span>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="entradaRadio">
+                                            <label class="form-check-label" for="entradaRadio">
+                                                Entrada
+                                            </label>
+                                        </div>
+                                        <div class="form-check" style="background-color: #55A630; display: block">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="saidaRadio" checked>
+                                            <label class="form-check-label" for="saidaRadio">
+                                                Saída
+                                            </label>
+                                        </div>
+                                        <!-- Categoria para Entrada -->
+                    <!--
+                                        <select class="form-select" id="categoriaEntrada"
+                                            aria-label="Default select example">
+                                            <option selected>Categoria Entrada</option>
+                                            <option value="1">Salario</option>
+                                            <option value="2">Emprestimo</option>
+                                            <option value="3">Redimentos</option>
+                                            <option value="4">Recebimento de clientes</option>
+                                        </select> -->
+                    <!-- Categoria para Saída -->
+                    <!--
+                                        <select class="form-select" id="categoriaSaida" style="display: none;"
+                                            aria-label="Default select example">
+                                            <option selected>Categoria Saída</option>
+                                            <option value="1">Alimentação</option>
+                                            <option value="2">Moradia</option>
+                                            <option value="3">Saúde</option>
+                                            <option value="4">Lazer</option>
+                                        </select>
+                                        <select class="form-select" id="categoriaEntrada"
+                                            aria-label="Default select example">
+                                            <option selected>Forma</option>
+                                            <option value="1">Dinheiro/moeda</option>
+                                            <option value="2">Pix</option>
+                                            <option value="3">TED</option>
+                                            <option value="4">DOC</option>
+                                        </select> -->
+
+                    <!--
+                                        <div class="form-group">
+                                            <label for="data-pagamento">Data</label> -->
+                    <!-- Datepicker as text field -->
+                    <!-- <div class="input-group date" data-date-format="dd/mm/yyyy">
+                                                <input type="text" class="form-control" placeholder="dd/mm/aaaa">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">R$</span>
+                                            <input type="text" class="form-control"
+                                                aria-label="Dollar amount (with dot and two decimal places)">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Descrição</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                                    <button type="button" class="btn btn-primary">SALVAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
                 </div>
 
                 <div class="card" style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); padding:0%">
@@ -125,71 +346,79 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"
-                            style="background-color: #FFF2F2; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#E37373; border-top:0px;"><img
-                                src="/images/icon-dividas-a-pagar.png" alt="Dívidas a pagar"
-                                style="width: 90px; height:90px;"></li>
+                            style="background-color: #FFF2F2; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#E37373; border-top:0px;">
+                            <img src="/images/icon-dividas-a-pagar.png" alt="Dívidas a pagar"
+                                style="width: 90px; height:90px;">
+                        </li>
                     </ul>
                 </div>
 
-            </div> 
+            </div>
 
-            <div  style="background-color: rgba(128, 0, 128, 0); display:flex; padding-right: 0%; padding-left:3%;">
-                <div class="card" style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); margin-right:3%;;">
+            <div style="background-color: rgba(128, 0, 128, 0); display:flex; padding-right: 0%; padding-left:3%;">
+                <div class="card"
+                    style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); margin-right:3%;;">
                     <div class="card-header" style="background-color: #37A692; padding-bottom: 0%;">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Evoluções</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"
-                            style="background-color: #DDF1E5; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#37A692; border-top:0px;"><img
-                                src="/images/icon-evolucoes.png" alt="Evoluções" style="width: 90px; height:90px;">
+                            style="background-color: #DDF1E5; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#37A692; border-top:0px;">
+                            <img src="/images/icon-evolucoes.png" alt="Evoluções" style="width: 90px; height:90px;">
                         </li>
                     </ul>
                 </div>
 
-                <div class="card" style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); padding:0%;">
+                <div class="card"
+                    style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); padding:0%;">
                     <div class="card-header" style="background-color: #55A630; padding-bottom: 0%">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Valores a receber
                         </p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"
-                            style="background-color: #E1FFD3; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#55A630; border-top:0px;"><img
-                                src="/images/icon-valores-a-receber.png" alt="Valores a receber"
-                                style="width: 90px; height:90px;"></li>
+                            style="background-color: #E1FFD3; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#55A630; border-top:0px;">
+                            <img src="/images/icon-valores-a-receber.png" alt="Valores a receber"
+                                style="width: 90px; height:90px;">
+                        </li>
                     </ul>
                 </div>
 
             </div>
 
             <div style="background-color: rgba(255, 21, 255, 0); padding-right: 0%; padding-left:3%; display:flex;">
-    
-                <div class="card" style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); margin-right:3%;">
+
+                <div class="card"
+                    style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); margin-right:3%;">
                     <div class="card-header" style="background-color: #E8B554; padding-bottom: 0%">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Lista de desejos
                         </p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"
-                            style="background-color: #FEEDCC; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#E8B554; border-top:0px;"><img
-                                src="/images/icon-lista-de-desejos.png" alt="Lista de desejos"
-                                style="width: 90px; height:90px;"></li>
+                            style="background-color: #FEEDCC; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#E8B554; border-top:0px;">
+                            <img src="/images/icon-lista-de-desejos.png" alt="Lista de desejos"
+                                style="width: 90px; height:90px;">
+                        </li>
                     </ul>
                 </div>
 
-                <div class="card" style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); padding:0%;">
+                <div class="card"
+                    style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); padding:0%;">
                     <div class="card-header" style="background-color: #4A95DB; padding-bottom: 0%">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Orçamento mensal
                         </p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"
-                            style="background-color: #D6EBFF; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#4A95DB; border-top:0px;"><img
-                                src="/images/icon-orcamento-mensal.png" alt="Orçamento mensal"
-                                style="width: 90px; height:90px;"></li>
+                            style="background-color: #D6EBFF; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#4A95DB; border-top:0px;">
+                            <img src="/images/icon-orcamento-mensal.png" alt="Orçamento mensal"
+                                style="width: 90px; height:90px;">
+                        </li>
                     </ul>
                 </div>
             </div>
-        </div> 
+        </div>
         <!-- -->
 
 
@@ -198,6 +427,61 @@
 
     </div>
 
+    <!-- ------------------------------------------------------------------------------ -->
+    <script>
+        // Função para exibir ou ocultar opções de categoria com base na seleção do rádio
+        function toggleCategoriaOptions() {
+            if (document.getElementById('entradaRadio').checked) {
+                document.getElementById('categoriaEntrada').style.display = 'block';
+                document.getElementById('categoriaSaida').style.display = 'none';
+            } else {
+                document.getElementById('categoriaEntrada').style.display = 'none';
+                document.getElementById('categoriaSaida').style.display = 'block';
+            }
+        }
+        // Vincule a função ao evento change dos rádios
+        document.getElementById('entradaRadio').addEventListener('change', toggleCategoriaOptions);
+        document.getElementById('saidaRadio').addEventListener('change', toggleCategoriaOptions);
+
+        // Chame a função inicialmente para exibir as opções corretas com base na seleção inicial
+        toggleCategoriaOptions();
+    </script>
+
+    <!-- ------------------------------------------------------------------------------------------ -->
+
+
+    <!-- jQuery (obrigatório para o Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <!-- Popper.js (obrigatório para o Bootstrap) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS (obrigatório para o Bootstrap) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Datepicker JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Bootstrap Datepicker Localization -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+
+    <!-- Script para inicializar o Datepicker -->
+    <script>
+        $(document).ready(function () {
+            $('.date').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR'
+            });
+        });
+    </script>
 
 
 </body>

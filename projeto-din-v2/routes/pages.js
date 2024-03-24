@@ -3,7 +3,7 @@ const router = express.Router();
 
 const lancamentoController = require("../controllers/lancamentoController");
 
-/*router.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.render('cadastro');
 });
 
@@ -15,26 +15,48 @@ router.get('/home', (req, res) => {
     res.render('home')
 })
 
-
 /*-----------------------------------*/
 
-router.get("/teste", (req, res) => {
-    const resposta = lancamentoController.buscar();
-    res.send(resposta);
+router.get("/lancamentos", (req, res) => {
+    const listaLancamentos = lancamentoController.buscar();
+    listaLancamentos
+        .then((lancamentos) => res.status(200).json(lancamentos))
+        .catch((error) => res.status(400).json(error.message));
 });
 
-/*router.post("/teste", (req, res) => {
-    res.send("Chegou aqui, estamos criando um novo lançamentos...");
+router.post("/lancamentos", (req, res) => {
+    const novoLancamento = req.body;
+    const lancamento = lancamentoController.criar(novoLancamento);
+    lancamento
+        .then(lancamentoCriado => res.status(201).json(lancamentoCriado))
+        .catch((error) => res.status(400).json(error.message));
 });
 
-router.put("/teste/:id", (req, res) => {
+router.post("/teste", (req, res) => {
+    res.send("Formulario recebido")
+})
+
+
+router.put("/lancamentos/:id", (req, res) => {
     const { id } = req.params;
-    res.send(`Chegou aqui, estamos atualizando o lançamento ${id}...`);
+    const lancamentoAtualizado = req.body;
+    const lancamento = lancamentoController.atualizar(lancamentoAtualizado, id);
+    lancamento
+        .then((resultLancamentoAtualizado) => 
+            res.status(200).json(resultLancamentoAtualizado)
+        )
+        .catch((error) => res.status(400).json(error.message));
 });
 
-router.delete("/teste/:id", (req, res) => {
+
+router.delete("/lancamentos/:id", (req, res) => {
     const { id } = req.params;
-    res.send(`Chegou aqui, estamos deletando o lançamento ${id}...`);
-});*/
+    const lancamento = lancamentoController.deletar(id);
+    lancamento
+    .then((resultLancamentoDeletado) =>
+    res.status(200).json(resultLancamentoDeletado)
+    )
+    .catch((error) => res.status(400).json(error.message));
+});
 
 module.exports = router;

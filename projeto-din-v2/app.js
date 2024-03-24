@@ -33,6 +33,8 @@ db.connect((error) =>{
     }
 })
 
+module.exports = db;
+
 //Define Routes
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
