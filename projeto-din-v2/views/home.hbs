@@ -133,7 +133,7 @@
             <div style="background-color: rgba(26, 100, 11, 0); padding-right: 0%; padding-left:3%; display:flex;">
 
                 <div class="card"
-                    style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); margin-right:3%;">
+                    style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); margin-right:3%; ">
                     <div class="card-header" style="background-color: #5D8165; padding-bottom: 0%">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Novo lançamento</p>
                     </div>
@@ -181,51 +181,56 @@
                                         </div>
 
                                         <!-- Categoria -->
-                                        <div class="row" style="margin-top: 10px;">
-                                            <div class="col-md-6">
-                                                <!-- Categoria -->
-                                                <label for="categoria">Categoria:</label>
-                                                <select class="form-select" id="categoria" name="categoria"
-                                                    style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
-                                                    <option selected>Selecione a categoria</option>
-                                                    <option value="1">Categoria 1</option>
-                                                    <option value="2">Categoria 2</option>
-                                                    <option value="3">Categoria 3</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <!-- Forma -->
-                                                <label for="forma">Forma:</label>
-                                                <select class="form-select" id="forma" name="forma"
-                                                    style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width:213px;">
-                                                    <option selected>Selecione a forma</option>
-                                                    <option value="Dinheiro">Dinheiro</option>
-                                                    <option value="Pix">Pix</option>
-                                                    <option value="Débito">Débito</option>
-                                                    <option value="Crédito">Crédito</option>
-                                                    <option value="TED/DOC">TED/DOC</option>
-                                                </select>
-                                            </div>
+                                        <label for="categoria" style="margin-top: 25px;">Categoria</label>
+                                        <div id="categorias">
+                                            <!-- Select da categoria de receita -->
+                                            <select class="form-select" id="categoriaReceita"
+                                                style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
+                                                <option selected>Categoria de receita...</option>
+                                                <option value="1">Salário</option>
+                                                <option value="2">Empréstimo</option>
+                                                <option value="3">Investimento</option>
+                                            </select>
+
+                                            <!-- Select da categoria de despesa -->
+                                            <select class="form-select" id="categoriaDespesa"
+                                                style="display: none; color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
+                                                <option selected>Categoria de despesa...</option>
+                                                <option value="1">Alimentação</option>
+                                                <option value="2">Saúde</option>
+                                                <option value="3">Lazer</option>
+                                            </select>
                                         </div>
+
+                                        <!-- Forma -->
+                                        <label for="forma" style="margin-top: 5px; margin-bottom: -5px;">Forma:</label>
+                                        <select class="form-select" id="forma" name="forma"
+                                            style="display: block; color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding: 6px;">
+                                            <option selected>Selecione a forma</option>
+                                            <option value="Dinheiro">Dinheiro</option>
+                                            <option value="Pix">Pix</option>
+                                            <option value="Débito">Débito</option>
+                                            <option value="Crédito">Crédito</option>
+                                            <option value="TED/DOC">TED/DOC</option>
+                                        </select>
 
                                         <!-- Data -->
                                         <label for="data"
-                                            style="display: block; margin-top: 5px; margin-bottom: 0px; ">Data</label>
+                                            style="display: block; margin-top: 0px; margin-bottom: 0px; ">Data</label>
                                         <input type="date" id="data" name="data"
                                             style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
 
                                         <!-- Valor -->
                                         <label for="valor"
-                                            style="margin-top: 5px; margin-bottom: 0px; display:block;">Valor:</label>
+                                            style="margin-top: 0px; margin-bottom: 0px; display:block;">Valor:</label>
                                         <input type="text" id="valor" name="valor"
                                             style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width: 200px;">
 
                                         <!-- Descrição -->
                                         <label for="descricao"
-                                            style="margin-top: 5px; margin-bottom: 0px; display:block;">Descrição:</label>
+                                            style="margin-top: 0px; margin-bottom: 0px; display:block;">Descrição:</label>
                                         <input type="text" id="descricao" name="descricao"
-                                            style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width: 460px; height: 100px;">
-
+                                            style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width: 470px;">
 
                                         <!-- Botões de Ação -->
                                         <div class="modal-footer">
