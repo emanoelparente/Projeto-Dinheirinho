@@ -132,12 +132,12 @@
         <div style="background-color: rgba(255, 255, 0, 0); padding: 0%;">
             <div style="background-color: rgba(26, 100, 11, 0); padding-right: 0%; padding-left:3%; display:flex;">
 
-                <div class="card"
+                <div class="card" id="cardLancamento"
                     style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); margin-right:3%; ">
                     <div class="card-header" style="background-color: #5D8165; padding-bottom: 0%">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Novo lançamento</p>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" id="listaClicavel" style="cursor: pointer;">
                         <li class="list-group-item"
                             style="background-color: #C0D7C5; display: flex; justify-content:center; padding:0%; border-width:1px; border-style:solid; border-color:#5D8165; border-top:0px;">
                             <img src="/images/icon-novo-lancamento.png" alt="Novo lançamento"
@@ -145,10 +145,6 @@
                         </li>
                     </ul>
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Launch demo modal
-                    </button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -199,6 +195,7 @@
                                                 <option value="1">Alimentação</option>
                                                 <option value="2">Saúde</option>
                                                 <option value="3">Lazer</option>
+                                                <option value="3">Educação</option>
                                             </select>
                                         </div>
 
@@ -244,6 +241,13 @@
                                             Lançamento criado com sucesso!
                                         </div>
 
+                                        <script>
+                                            // Adiciona um evento de clique ao card
+                                            document.getElementById('cardLancamento').addEventListener('click', function () {
+                                                // Abre o modal quando o card for clicado
+                                                $('#exampleModalCenter').modal('show');
+                                            });
+                                        </script>
 
                                     </form>
 
