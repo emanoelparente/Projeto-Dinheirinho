@@ -25,6 +25,22 @@ router.get("/lancamentos", (req, res) => {
 });
 
 router.post("/lancamentos", (req, res) => {
+    const novoLancamento = {
+        Tipo_de_lançamento: req.body.tipo,
+        Categoria: req.body.categoria,
+        Forma: req.body.forma,
+        Data_de_ocorrencia: req.body.data,
+        Valor: req.body.valor,
+        Descrição: req.body.descricao
+    };
+
+    lancamentoController.criar(novoLancamento)
+        .then(lancamentoCriado => res.status(201).json(lancamentoCriado))
+        .catch((error) => res.status(400).json(error.message));
+});
+
+
+/*router.post("/lancamentos", (req, res) => {
     const novoLancamento = req.body;
     const lancamento = lancamentoController.criar(novoLancamento);
     lancamento
@@ -34,7 +50,7 @@ router.post("/lancamentos", (req, res) => {
 
 router.post("/teste", (req, res) => {
     res.send("Formulario recebido")
-})
+})*/
 
 
 router.put("/lancamentos/:id", (req, res) => {

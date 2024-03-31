@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Bootstrap Datepicker CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
@@ -18,6 +20,25 @@
             font-family: poppins;
             padding: 0%;
             margin: 0%;
+        }
+
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #d4edda;
+            /* Verde claro */
+            color: #155724;
+            /* Verde escuro */
+            padding-top: 32px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 400px;
+            height: 100px;
+            text-align: center;
+            font-size: 20px;
         }
     </style>
 
@@ -141,202 +162,90 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/teste" method="post">
-                                        <span style="font-size: 15px; font-weight: 600;">Tipo de lançamento</span>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="entradaRadio">
-                                            <label class="form-check-label" for="entradaRadio">
-                                                Entrada
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="saidaRadio" checked>
-                                            <label class="form-check-label" for="saidaRadio">
-                                                Saída
-                                            </label>
-                                        </div>
-                                        <!-- Categoria para Entrada -->
-                                        <select class="form-select" id="categoriaEntrada"
-                                            aria-label="Default select example">
-                                            <option selected>Categoria Entrada</option>
-                                            <option value="1">Salario</option>
-                                            <option value="2">Emprestimo</option>
-                                            <option value="3">Redimentos</option>
-                                            <option value="4">Recebimento de clientes</option>
-                                        </select>
-                                        <!-- Categoria para Saída -->
-                                        <select class="form-select" id="categoriaSaida" style="display: none;"
-                                            aria-label="Default select example;">
-                                            <option selected>Categoria Saída</option>
-                                            <option value="1">Alimentação</option>
-                                            <option value="2">Moradia</option>
-                                            <option value="3">Saúde</option>
-                                            <option value="4">Lazer</option>
-                                        </select>                                
 
-                                        <select class="form-select" id="forma" aria-label="Default select example">
-                                            <option selected>Forma</option>
-                                            <option value="1">Dinheiro/moeda</option>
-                                            <option value="2">Pix</option>
-                                            <option value="3">TED</option>
-                                            <option value="4">DOC</option>
-                                        </select>
-                                        
-                                        <div class="form-group">
-                                            
-                                            <label for="data-pagamento">Data</label>
-                                            <!-- Datepicker as text field -->
-                                            <div class="input-group date" data-date-format="dd/mm/yyyy">
-                                                <input type="text" class="form-control" placeholder="dd/mm/aaaa">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"></span>
-                                                </div>
+                                    <form id="form-lancamento">
+                                        <!-- Tipo de Lançamento -->
+                                        <label for="tipo">Tipo de Lançamento</label>
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons"
+                                            style="display: block;">
+                                            <label class="btn btn-primary" style="width: 49%;" id="btnReceita">
+                                                <input type="radio" name="tipo" id="receita" value="Receita"
+                                                    autocomplete="off" checked> Receita
+                                            </label>
+                                            <label class="btn btn-secondary"
+                                                style="background-color: whitesmoke; color:#0062cc; width: 49%; border-color:#0062cc"
+                                                id="btnDespesa">
+                                                <input type="radio" name="tipo" id="despesa" value="Despesa"
+                                                    autocomplete="off"> Despesa
+                                            </label>
+                                        </div>
+
+                                        <!-- Categoria -->
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col-md-6">
+                                                <!-- Categoria -->
+                                                <label for="categoria">Categoria:</label>
+                                                <select class="form-select" id="categoria" name="categoria"
+                                                    style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
+                                                    <option selected>Selecione a categoria</option>
+                                                    <option value="1">Categoria 1</option>
+                                                    <option value="2">Categoria 2</option>
+                                                    <option value="3">Categoria 3</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Forma -->
+                                                <label for="forma">Forma:</label>
+                                                <select class="form-select" id="forma" name="forma"
+                                                    style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width:213px;">
+                                                    <option selected>Selecione a forma</option>
+                                                    <option value="Dinheiro">Dinheiro</option>
+                                                    <option value="Pix">Pix</option>
+                                                    <option value="Débito">Débito</option>
+                                                    <option value="Crédito">Crédito</option>
+                                                    <option value="TED/DOC">TED/DOC</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        
-                                        Valor
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">R$</span>
-                                            <input type="text" class="form-control"
-                                                aria-label="Dollar amount (with dot and two decimal places)">
+
+                                        <!-- Data -->
+                                        <label for="data"
+                                            style="display: block; margin-top: 5px; margin-bottom: 0px; ">Data</label>
+                                        <input type="date" id="data" name="data"
+                                            style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
+
+                                        <!-- Valor -->
+                                        <label for="valor"
+                                            style="margin-top: 5px; margin-bottom: 0px; display:block;">Valor:</label>
+                                        <input type="text" id="valor" name="valor"
+                                            style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width: 200px;">
+
+                                        <!-- Descrição -->
+                                        <label for="descricao"
+                                            style="margin-top: 5px; margin-bottom: 0px; display:block;">Descrição:</label>
+                                        <input type="text" id="descricao" name="descricao"
+                                            style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px; width: 460px; height: 100px;">
+
+
+                                        <!-- Botões de Ação -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">CANCELAR</button>
+                                            <button type="submit" class="btn btn-primary">SALVAR</button>
                                         </div>
 
-                                        <div class="form-group">
-                                            
-                                            <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                rows="3"></textarea>
+                                        <!-- Mensagem de Sucesso -->
+                                        <div class="success-message" id="successMessage" style="display: none;">
+                                            Lançamento criado com sucesso!
                                         </div>
+
+
                                     </form>
 
-                                    <form action="/lancamentos" method="post">
-                                        <label>Tipo_de_lançamento</label>
-                                        <input type="text">
-
-                                        <label>Categoria</label>
-                                        <input type="text">
-
-                                        <label>Forma</label>
-                                        <input type="text">
-
-                                        <label>Data_de_ocorrencia</label>
-                                        <input type="text">
-
-                                        <label>Valor</label>
-                                        <input type="text">
-
-                                        <label>Descrição</label>
-                                        <input type="text">
-
-                                        <button type="submit">Enviar</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                                    <button type="submit" class="btn btn-primary">SALVAR</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
-                    <!-- Button trigger modal -->
-                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Launch demo modal
-                    </button> -->
-
-                    <!-- Modal -->
-                    <!--
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Novo lançamento</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="/####" method="POST">
-                                        <span style="background-color: #4A95DB;">Tipo de lançamento</span>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="entradaRadio">
-                                            <label class="form-check-label" for="entradaRadio">
-                                                Entrada
-                                            </label>
-                                        </div>
-                                        <div class="form-check" style="background-color: #55A630; display: block">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="saidaRadio" checked>
-                                            <label class="form-check-label" for="saidaRadio">
-                                                Saída
-                                            </label>
-                                        </div>
-                                        <!-- Categoria para Entrada -->
-                    <!--
-                                        <select class="form-select" id="categoriaEntrada"
-                                            aria-label="Default select example">
-                                            <option selected>Categoria Entrada</option>
-                                            <option value="1">Salario</option>
-                                            <option value="2">Emprestimo</option>
-                                            <option value="3">Redimentos</option>
-                                            <option value="4">Recebimento de clientes</option>
-                                        </select> -->
-                    <!-- Categoria para Saída -->
-                    <!--
-                                        <select class="form-select" id="categoriaSaida" style="display: none;"
-                                            aria-label="Default select example">
-                                            <option selected>Categoria Saída</option>
-                                            <option value="1">Alimentação</option>
-                                            <option value="2">Moradia</option>
-                                            <option value="3">Saúde</option>
-                                            <option value="4">Lazer</option>
-                                        </select>
-                                        <select class="form-select" id="categoriaEntrada"
-                                            aria-label="Default select example">
-                                            <option selected>Forma</option>
-                                            <option value="1">Dinheiro/moeda</option>
-                                            <option value="2">Pix</option>
-                                            <option value="3">TED</option>
-                                            <option value="4">DOC</option>
-                                        </select> -->
-
-                    <!--
-                                        <div class="form-group">
-                                            <label for="data-pagamento">Data</label> -->
-                    <!-- Datepicker as text field -->
-                    <!-- <div class="input-group date" data-date-format="dd/mm/yyyy">
-                                                <input type="text" class="form-control" placeholder="dd/mm/aaaa">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"></span>
-                                                </div>
-                                            </div>
-                                        </div> 
-
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">R$</span>
-                                            <input type="text" class="form-control"
-                                                aria-label="Dollar amount (with dot and two decimal places)">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Descrição</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                rows="3"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                                    <button type="button" class="btn btn-primary">SALVAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
 
@@ -422,33 +331,242 @@
         <!-- -->
 
 
-
-
-
     </div>
 
-    <!-- ------------------------------------------------------------------------------ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Script de categoria selecionada -->
     <script>
-        // Função para exibir ou ocultar opções de categoria com base na seleção do rádio
-        function toggleCategoriaOptions() {
-            if (document.getElementById('entradaRadio').checked) {
-                document.getElementById('categoriaEntrada').style.display = 'block';
-                document.getElementById('categoriaSaida').style.display = 'none';
-            } else {
-                document.getElementById('categoriaEntrada').style.display = 'none';
-                document.getElementById('categoriaSaida').style.display = 'block';
+        // Variáveis globais para armazenar o tipo e a categoria selecionados
+        let tipoSelecionado = 'Receita';
+        let categoriaSelecionada = '';
+
+        // Função para alternar as propriedades de estilo conforme o botão clicado
+        function alternarEstilos(tipo) {
+            const btnReceita = document.getElementById('btnReceita');
+            const btnDespesa = document.getElementById('btnDespesa');
+
+            if (tipo === 'Receita') {
+                btnReceita.classList.remove('btn-secondary');
+                btnReceita.classList.add('btn-primary');
+                btnReceita.style.backgroundColor = '';
+                btnReceita.style.color = '';
+
+                btnDespesa.classList.remove('btn-primary');
+                btnDespesa.classList.add('btn-secondary');
+                btnDespesa.style.backgroundColor = 'whitesmoke';
+                btnDespesa.style.color = '#0062cc';
+            } else if (tipo === 'Despesa') {
+                btnDespesa.classList.remove('btn-secondary');
+                btnDespesa.classList.add('btn-primary');
+                btnDespesa.style.backgroundColor = '';
+                btnDespesa.style.color = '';
+
+                btnReceita.classList.remove('btn-primary');
+                btnReceita.classList.add('btn-secondary');
+                btnReceita.style.backgroundColor = 'whitesmoke';
+                btnReceita.style.color = '#0062cc';
+            }
+
+            // Atualiza a variável global com o tipo selecionado
+            tipoSelecionado = tipo;
+
+            // Exibe a lista de categoria de acordo com o tipo selecionado
+            exibirListaCategoria();
+        }
+
+        // Função para exibir a lista de categoria de acordo com o tipo selecionado
+        function exibirListaCategoria() {
+            const categoriaReceita = document.getElementById('categoriaReceita');
+            const categoriaDespesa = document.getElementById('categoriaDespesa');
+
+            if (tipoSelecionado === 'Receita') {
+                categoriaReceita.style.display = 'block';
+                categoriaDespesa.style.display = 'none';
+            } else if (tipoSelecionado === 'Despesa') {
+                categoriaReceita.style.display = 'none';
+                categoriaDespesa.style.display = 'block';
             }
         }
-        // Vincule a função ao evento change dos rádios
-        document.getElementById('entradaRadio').addEventListener('change', toggleCategoriaOptions);
-        document.getElementById('saidaRadio').addEventListener('change', toggleCategoriaOptions);
 
-        // Chame a função inicialmente para exibir as opções corretas com base na seleção inicial
-        toggleCategoriaOptions();
+        // Adiciona eventos de clique aos botões
+        document.getElementById('btnReceita').addEventListener('click', function () {
+            alternarEstilos('Receita');
+        });
+
+        document.getElementById('btnDespesa').addEventListener('click', function () {
+            alternarEstilos('Despesa');
+        });
+
+        // Adiciona evento de clique ao botão que abre o modal
+        document.getElementById('btnAbrirModal').addEventListener('click', function () {
+            // Define a opção "Receita" como selecionada
+            document.getElementById('receita').checked = true;
+            // Atualiza a variável global com o tipo selecionado
+            tipoSelecionado = 'Receita';
+            // Exibe a lista de categoria de acordo com o tipo selecionado
+            exibirListaCategoria();
+        });
+
+        // Adiciona evento de mudança ao selecionar a categoria de receita
+        document.getElementById('categoriaReceita').addEventListener('change', function () {
+            categoriaSelecionada = this.value;
+        });
+
+        // Adiciona evento de mudança ao selecionar a categoria de despesa
+        document.getElementById('categoriaDespesa').addEventListener('change', function () {
+            categoriaSelecionada = this.value;
+        });
     </script>
 
-    <!-- ------------------------------------------------------------------------------------------ -->
 
+
+    <!-- Script de salvamento dos dados-->
+    <script>
+
+        /*document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form-lancamento');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+                // Obtém os valores dos campos do formulário
+                const tipoLancamento = document.querySelector('input[name="tipo"]:checked').value;
+                const categoriaSelecionada = (tipoLancamento === 'Receita') ?
+                    document.getElementById('categoriaReceita').options[document.getElementById('categoriaReceita').selectedIndex].text :
+                    document.getElementById('categoriaDespesa').options[document.getElementById('categoriaDespesa').selectedIndex].text;
+                const forma = form.forma.value;
+                const data = form.data.value;
+                const valor = form.valor.value;
+                const descricao = form.descricao.value;
+
+                // Cria o objeto com os dados do lançamento
+                const novoLancamento = {
+                    tipo: tipoLancamento,
+                    categoria: categoriaSelecionada,
+                    forma: forma,
+                    data: data,
+                    valor: valor,
+                    descricao: descricao
+                };
+
+                // Envia os dados do novo lançamento para o backend
+                fetch('/lancamentos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(novoLancamento)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao criar lançamento');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Lançamento criado com sucesso:', data);
+                        // Faça o que for necessário com os dados do lançamento criado
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                    });
+            });
+        });*/
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form-lancamento');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+                // Obtém os valores dos campos do formulário
+                const tipoLancamento = document.querySelector('input[name="tipo"]:checked').value;
+                const categoriaSelecionada = (tipoLancamento === 'Receita') ?
+                    document.getElementById('categoriaReceita').options[document.getElementById('categoriaReceita').selectedIndex].text :
+                    document.getElementById('categoriaDespesa').options[document.getElementById('categoriaDespesa').selectedIndex].text;
+                const forma = form.forma.value;
+                const data = form.data.value;
+                const valor = form.valor.value;
+                const descricao = form.descricao.value;
+
+                // Cria o objeto com os dados do lançamento
+                const novoLancamento = {
+                    tipo: tipoLancamento,
+                    categoria: categoriaSelecionada,
+                    forma: forma,
+                    data: data,
+                    valor: valor,
+                    descricao: descricao
+                };
+
+                // Envia os dados do novo lançamento para o backend
+                fetch('/lancamentos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(novoLancamento)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao criar lançamento');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Lançamento criado com sucesso:', data);
+                        // Limpa os campos do formulário
+                        form.reset();
+                        // Exibe a mensagem de sucesso
+                        document.getElementById('successMessage').style.display = 'block';
+                        // Esconde a mensagem após 3 segundos
+                        setTimeout(function () {
+                            document.getElementById('successMessage').style.display = 'none';
+                        }, 2500);
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                    });
+            });
+        });
+    </script>
 
     <!-- jQuery (obrigatório para o Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -464,25 +582,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
-    <!-- Bootstrap Datepicker JS -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-    <!-- Bootstrap Datepicker Localization -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-
-    <!-- Script para inicializar o Datepicker -->
-    <script>
-        $(document).ready(function () {
-            $('.date').datepicker({
-                format: 'dd/mm/yyyy',
-                language: 'pt-BR'
-            });
-        });
-    </script>
-
 
 </body>
 

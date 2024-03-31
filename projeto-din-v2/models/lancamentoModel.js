@@ -22,10 +22,10 @@ class LancamentoModel{
         return new Promise((resolve, reject)=>{
             conexao.query(sql, novoLancamento, (error, resposta) => {
                 if(error){
-                    console.log("Deu erro no criar...");
+                    console.error("Erro ao criar lançamento:", error);
                     reject(error);
                 }
-                console.log("Show..");
+                console.log("Lançamento criado com sucesso.");
                 resolve(resposta);
             });
         });
