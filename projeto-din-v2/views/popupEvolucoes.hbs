@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Bootstrap Datepicker CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!--<link rel="stylesheet" href="/style.css"> -->
+    <style>
+        body {
+            font-family: poppins;
+            padding: 0%;
+            margin: 0%;
+        }
+
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #d4edda;
+            /* Verde claro */
+            color: #155724;
+            /* Verde escuro */
+            padding-top: 32px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 400px;
+            height: 100px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+
+        #areaDosCards {
+            overflow-y: auto;
+            /* Adiciona uma barra de rolagem vertical quando necessário */
+            max-height: 80vh;
+            /* Define a altura máxima da div para 80% da altura da viewport */
+            padding-right: 15px;
+            /* Adiciona espaço para a barra de rolagem */
+        }
+
+        .delete-btn {
+            width: 40px;
+            /* Defina o tamanho desejado para as imagens */
+            height: 35px;
+            border-style: none;
+        }
+
+        .delete-btn:hover {
+            cursor: pointer;
+            /* Altere o cursor para uma mãozinha ao passar o mouse */
+        }
+
+
+    </style>
+
+    <title>Document</title>
+</head>
+
+
+<body>
+    <nav style="background-color: #77AF51;">
+
+        <div class="row" style="background-color: #06519700; padding-top:1%;">
+            <div class="col" style="background-color: #e3737300; padding-left:5%">
+                <img src="/images/logo-dinheirinho-letra-branca.png" alt="logo"
+                    style="width: 50%; height: 95%; background-color:rgba(165, 42, 42, 0);">
+            </div>
+            <div class="col-6"
+                style="background-color: #5d816500; display:flex; justify-content:center; align-items:center;">
+                <h1 style="font-size: 25px; text-align:center; color:white; ">Controle de Finanças Pessoais</h1>
+            </div>
+            <div class="col"
+                style="background-color: #e8b45400; display:flex; justify-content:right; padding-right: 5%">
+                <img src="/images/icon-perfil.png" alt="logo"
+                    style="width: 20%; height: 80%; background-color: rgba(0, 0, 0, 0);">
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="row"
+        style="background-color: rgb(255, 255, 255); padding-top: 2%; display: flex; justify-content:center;">
+
+
+        <div class="card" style="width: 20rem; background-color:#37a69200; margin:0%; padding:0%">
+            <div style="background-color: #77AF51; text-align: center; padding-top:8%">
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 0%; color:rgb(255, 255, 255);">Banco
+                    inter</p>
+                <p style="font-size: 12px; color:rgb(255, 255, 255);">Conta corrente</p>
+            </div>
+
+            <div class="card-body" style="background-color: #C8F4B3; border-bottom: 1px solid #77AF51;">
+
+                <ul style="list-style: none; display: flex; padding:0%;">
+                    <li style="padding-right:25%;">Ag 0001</li>
+                    <li>Conta 0001-01</li>
+                </ul>
+                <p style="margin-bottom: 2%; padding-left: 1%; ">Saldo Atual</p>
+
+                <div class="row"
+                    style="background-color: rgb(255, 255, 255); margin-left: 1%; margin-right:3%; padding-bottom: -15%; border-style: solid;  border-width: 1px; border-radius: 5px; border-color:#77AF51 ">
+                    <div class="col" style="background-color: rgba(255, 255, 0, 0);">
+                        <p
+                            style="font-size: 20px; background-color: rgba(137, 43, 226, 0); margin-bottom: 0%; padding-top:15%;">
+                            R$</p>
+                    </div>
+                    <div class="col" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
+                        <p
+                            style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%;padding-top:5%;">
+                            520,00</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-body" style="background-color: #C8F4B3; border-bottom: 1px solid #77AF51;">
+
+                <p style="margin-bottom: 2%; padding-left: 1%; ">Saldo final do mês anterior</p>
+
+                <div class="row"
+                    style="background-color: rgb(255, 255, 255); margin-left: 1%; margin-right:3%; padding-bottom: -15%; border-style: solid;  border-width: 1px; border-radius: 5px; border-color:#77AF51 ">
+                    <div class="col" style="background-color: rgba(255, 255, 0, 0);">
+                        <p
+                            style="font-size: 20px; background-color: rgba(137, 43, 226, 0); margin-bottom: 0%; padding-top:15%;">
+                            R$</p>
+                    </div>
+                    <div class="col" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
+                        <p
+                            style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%;padding-top:5%;">
+                            520,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="padding: 0%; margin-top:6%; margin-bottom: 1%; font-size: 15px">Adicionar mais bancos</p>
+            <div class="card-body"
+                style="display: flex;justify-content: center; background-color:#77AF51; padding:2%; border-radius: 2%;">
+                <img src="/images/icon-add-bank.png" alt="icon">
+            </div>
+        </div>
+
+        <!--Area dos cards -->
+
+        <div style="background-color: rgba(255, 255, 0, 0); padding: 0%; margin-left: 1%; width: 72%; height: 480px; border-style:solid; border-radius:10px; border-color: #77AF51"
+            id="areaDosCards">
+
+            <div style="background-color:rgba(0, 0, 255, 0); text-align: right; font-size:20px;">
+                <button id="closeButton"
+                    style="border-style: none; border-radius:2px; padding-left:12px; padding-right:12px; background-color:rgb(255, 207, 207); color:rgb(65, 65, 65)">X</button>
+            </div>
+
+            <div class="container" style="background-color: rgba(17, 102, 102, 0); padding:0%">
+
+                <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
+                    <div class="col" style="align-self:flex-end; background-color: #5bcc8e00">
+                        <h1 style="font-size: 20px; font-weight:600; color:#2a994f">RECEITAS</h1>
+                    </div>
+                    <div class="col text-right" style="background-color: rgba(153, 205, 50, 0); margin-top: 3%;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <p style="margin-bottom: 0;">Escolher data</p>
+                            <input type="date">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row"
+                    style="background-color: rgb(255, 255, 255); margin:1%; font-size: 15px; font-weight:300">
+                    <table class="table table-hover" id="receitas-table">
+                        <thead>
+                            <tr style="background-color: #b9b9b9;">
+                                <th scope="col">Data</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Forma de recebimento</th>
+                                <th scope="col" class="descricao-col">Descrição</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados de receitas serão inseridos dinamicamente aqui 
+                            
+                            <td>29/03/2024</td>
+                            <td>Salário</td>
+                            <td>Pix</td>
+                            <td>Vamos testar</td>
+                            <td>4125</td>
+                            <td>106</td>
+
+
+
+
+                            -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
+                    <div class="col" style="align-self:flex-end; background-color:#ff9d9d00">
+                        <h1 style="font-size: 20px; font-weight:600; color:#e46868">DESPESAS</h1>
+                    </div>
+                </div>
+
+                <div class="row"
+                    style="background-color: rgb(255, 255, 255); margin:1%; font-size: 15px; font-weight:300">
+                    <table class="table table-hover" id="despesas-table">
+                        <thead>
+                            <tr style="background-color: #b9b9b9;">
+                                <th scope="col">Data</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Forma de pagamento</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados de despesas serão inseridos dinamicamente aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /*document.addEventListener("DOMContentLoaded", function () {
+                const receitasTable = document.getElementById('receitas-table').querySelector('tbody');
+                const despesasTable = document.getElementById('despesas-table').querySelector('tbody');
+
+                fetch('/lancamentos')
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(lancamento => {
+                            const row = document.createElement('tr');
+                            ['Data_de_ocorrencia', 'Categoria', 'Forma', 'Descrição', 'Valor', 'id'].forEach(key => {
+                                const cell = document.createElement('td');
+                                if (key === 'Data_de_ocorrencia') {
+                                    // Converte a data para o formato "dd/mm/aaaa"
+                                    const dataFormatada = new Date(lancamento[key]);
+                                    const dataString = dataFormatada.toLocaleDateString('pt-BR');
+                                    cell.textContent = dataString;
+                                } else {
+                                    cell.textContent = lancamento[key];
+                                }
+                                row.appendChild(cell);
+                            });
+
+                            const actionsCell = document.createElement('td');
+                            actionsCell.innerHTML = `
+                        <div class="col d-flex align-items-center">
+                            <button class="delete-btn" data-id="${lancamento.id}">
+                                <img src="images/delete.png" alt="delete" style="width:20px; height:20px;">
+                            </button>
+                            <img src="images/edit.png" alt="edit" style="width:20px; height:20px;">
+                        </div>
+                    `;
+                            row.appendChild(actionsCell);
+
+                            if (lancamento.Tipo_de_lançamento === 'Receita') {
+                                receitasTable.appendChild(row);
+                            } else {
+                                despesasTable.appendChild(row);
+                            }
+                        });
+
+
+                        // Adiciona evento de clique aos botões de delete
+                        document.querySelectorAll('.delete-btn').forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                const id = btn.getAttribute('data-id');
+                                fetch(`/lancamentos/${id}`, { method: 'DELETE' })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            // Remove a linha da tabela apenas se a exclusão for bem-sucedida
+                                            btn.closest('tr').remove();
+                                        } else {
+                                            throw new Error('Erro ao excluir o lançamento');
+                                        }
+                                    })
+                                    .catch(error => console.error(error));
+                            });
+                        });
+
+                    })
+                    .catch(error => console.error('Erro ao obter os lançamentos:', error));
+            });*/
+
+        </script>
+
+
+        <style>
+            .delete-btn img {
+                width: 24px;
+                /* Defina o tamanho desejado para as imagens */
+                height: 24px;
+            }
+
+            .delete-btn:hover {
+                cursor: pointer;
+                /* Altere o cursor para uma mãozinha ao passar o mouse */
+            }
+
+            /* Ajuste o estilo da borda da lixeira conforme necessário */
+            .delete-btn img.delete-icon {
+                border: none;
+                /* Remova a borda ou ajuste conforme necessário */
+            }
+        </style>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const receitasTable = document.getElementById('receitas-table').querySelector('tbody');
+                const despesasTable = document.getElementById('despesas-table').querySelector('tbody');
+
+                fetch('/lancamentos')
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(lancamento => {
+                            const row = document.createElement('tr');
+                            ['Data_de_ocorrencia', 'Categoria', 'Forma', 'Descrição', 'Valor'].forEach(key => {
+                                const cell = document.createElement('td');
+                                if (key === 'Data_de_ocorrencia') {
+                                    const dataFormatada = new Date(lancamento[key]);
+                                    const dataString = dataFormatada.toLocaleDateString('pt-BR');
+                                    cell.textContent = dataString;
+                                } else {
+                                    cell.textContent = lancamento[key];
+                                }
+                                row.appendChild(cell);
+                            });
+
+                            row.setAttribute('data-id', lancamento.Id);
+
+                            const actionsCell = document.createElement('td');
+                            actionsCell.innerHTML = `
+                        <div class="col d-flex align-items-center">
+                            <button class="delete-btn">
+                                <img src="images/delete.png" alt="delete" style="width:40px; height:35px;">
+                            </button>
+                            <img src="images/edit.png" alt="edit" style="width:40px; height:35px;">
+                        </div>
+                    `;
+                            row.appendChild(actionsCell);
+
+                            if (lancamento.Tipo_de_lançamento === 'Receita') {
+                                receitasTable.appendChild(row);
+                            } else {
+                                despesasTable.appendChild(row);
+                            }
+                        });
+
+                        document.querySelectorAll('.delete-btn').forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                const id = btn.closest('tr').getAttribute('data-id');
+                                fetch(`/lancamentos/${id}`, { method: 'DELETE' })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            btn.closest('tr').remove();
+                                        } else {
+                                            throw new Error('Erro ao excluir o lançamento');
+                                        }
+                                    })
+                                    .catch(error => console.error(error));
+                            });
+                        });
+
+                    })
+                    .catch(error => console.error('Erro ao obter os lançamentos:', error));
+            });
+        </script>
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const closeButton = document.getElementById('closeButton');
+                closeButton.addEventListener('click', function () {
+                    window.location.href = '/home';
+                });
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+        <!-- -->
+
+    </div>
+
+
+
+
+    <!-- jQuery (obrigatório para o Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <!-- Popper.js (obrigatório para o Bootstrap) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS (obrigatório para o Bootstrap) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

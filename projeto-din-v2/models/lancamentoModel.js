@@ -17,6 +17,24 @@ class LancamentoModel{
         });
     }
 
+    buscarPorId(id) {
+        const sql = "SELECT * FROM lançamento WHERE id = ?";
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, id, (error, resposta) => {
+                if (error) {
+                    console.error("Erro ao buscar lançamento por ID:", error);
+                    reject(error);
+                } else if (resposta.length === 0) {
+                    console.error("Nenhum lançamento encontrado com o ID fornecido:", id);
+                    resolve(null);
+                } else {
+                    console.log("Lançamento encontrado:", resposta[0]);
+                    resolve(resposta[0]);
+                }
+            });
+        });
+    }
+
     criar(novoLancamento){
         const sql = "INSERT INTO lançamento SET ?";
         return new Promise((resolve, reject)=>{

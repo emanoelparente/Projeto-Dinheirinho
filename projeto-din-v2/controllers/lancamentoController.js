@@ -7,6 +7,10 @@ class LancamentoController{
         return lancamentoModel.listar();
     }
 
+    buscarPorId(id) {
+        return lancamentoModel.buscarPorId(id);
+    }
+
     criar(novoLancamento){
         return lancamentoModel.criar(novoLancamento);
     }

@@ -1,7 +1,12 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 
 const lancamentoController = require("../controllers/lancamentoController");
+
+// Configura o Express para servir arquivos estáticos da pasta 'views'
+router.use(express.static(path.join(__dirname, '../views')));
+
 
 router.get('/', (req, res) => {
     res.render('cadastro');
@@ -15,7 +20,27 @@ router.get('/home', (req, res) => {
     res.render('home')
 })
 
+router.get('/popupEvolucoes', (req, res) => {
+    res.render('popupEvolucoes')
+})
+
 /*-----------------------------------*/
+
+router.get("/lancamentos/:id", (req, res) => {
+    const { id } = req.params;
+    const lancamento = lancamentoController.buscarPorId(id);
+    lancamento
+        .then((lancamento) => {
+            if (!lancamento) {
+                return res.status(404).json({ error: 'Lançamento não encontrado' });
+            }
+            res.status(200).json(lancamento);
+        })
+        .catch((error) => res.status(400).json({ error: error.message }));
+});
+
+
+
 
 router.get("/lancamentos", (req, res) => {
     const listaLancamentos = lancamentoController.buscar();
@@ -23,6 +48,7 @@ router.get("/lancamentos", (req, res) => {
         .then((lancamentos) => res.status(200).json(lancamentos))
         .catch((error) => res.status(400).json(error.message));
 });
+
 
 router.post("/lancamentos", (req, res) => {
     const novoLancamento = {
@@ -58,14 +84,14 @@ router.put("/lancamentos/:id", (req, res) => {
     const lancamentoAtualizado = req.body;
     const lancamento = lancamentoController.atualizar(lancamentoAtualizado, id);
     lancamento
-        .then((resultLancamentoAtualizado) => 
+        .then((resultLancamentoAtualizado) =>
             res.status(200).json(resultLancamentoAtualizado)
         )
         .catch((error) => res.status(400).json(error.message));
 });
 
 
-router.delete("/lancamentos/:id", (req, res) => {
+/*router.delete("/lancamentos/:id", (req, res) => {
     const { id } = req.params;
     const lancamento = lancamentoController.deletar(id);
     lancamento
@@ -73,6 +99,18 @@ router.delete("/lancamentos/:id", (req, res) => {
     res.status(200).json(resultLancamentoDeletado)
     )
     .catch((error) => res.status(400).json(error.message));
+});*/
+
+
+router.delete("/lancamentos/:id", (req, res) => {
+    const { id } = req.params;
+    lancamentoController.deletar(id)
+        .then((resultLancamentoDeletado) => {
+            res.status(200).json({ message: 'Lançamento excluído com sucesso' });
+        })
+        .catch((error) => res.status(400).json({ error: error.message }));
 });
+
+
 
 module.exports = router;

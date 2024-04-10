@@ -128,9 +128,9 @@
             </div>
         </div>
 
-        <!-- -->
-        <div style="background-color: rgba(255, 255, 0, 0); padding: 0%;">
-            <div style="background-color: rgba(26, 100, 11, 0); padding-right: 0%; padding-left:3%; display:flex;">
+        <!--Area dos cards -->
+        <div style="background-color: rgba(255, 255, 0, 0); padding: 0%;" id="areaDosCards">
+            <div style="background-color: rgba(201, 40, 153, 0); padding-right: 0%; padding-left:3%; display:flex;">
 
                 <div class="card" id="cardLancamento"
                     style="width: 23rem; margin-top:0%; background-color:rgba(255, 68, 0, 0); margin-right:3%; ">
@@ -145,8 +145,7 @@
                         </li>
                     </ul>
 
-
-                    <!-- Modal -->
+                    <!-- Modal incluir lançamento-->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -274,8 +273,9 @@
             </div>
 
             <div style="background-color: rgba(128, 0, 128, 0); display:flex; padding-right: 0%; padding-left:3%;">
-                <div class="card"
-                    style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); margin-right:3%;;">
+
+                <div class="card" id="cardEvolucoes"
+                    style="cursor: pointer; width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); margin-right:3%;">
                     <div class="card-header" style="background-color: #37A692; padding-bottom: 0%;">
                         <p style="text-align: center; margin-top: 2%; font-size: 18px; color: white">Evoluções</p>
                     </div>
@@ -286,6 +286,18 @@
                         </li>
                     </ul>
                 </div>
+
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const cardEvolucoes = document.getElementById('cardEvolucoes');
+                        cardEvolucoes.addEventListener('click', function () {
+                            window.location.href = '/popupEvolucoes';
+                        });
+                    });
+                </script>
+
+
 
                 <div class="card"
                     style="width: 23rem; margin-top:2%; background-color:rgba(255, 68, 0, 0); padding:0%;">
@@ -341,42 +353,6 @@
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <!--Script de categoria selecionada -->
@@ -467,58 +443,6 @@
 
     <!-- Script de salvamento dos dados-->
     <script>
-
-        /*document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('form-lancamento');
-
-            form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Impede o comportamento padrão de envio do formulário
-
-                // Obtém os valores dos campos do formulário
-                const tipoLancamento = document.querySelector('input[name="tipo"]:checked').value;
-                const categoriaSelecionada = (tipoLancamento === 'Receita') ?
-                    document.getElementById('categoriaReceita').options[document.getElementById('categoriaReceita').selectedIndex].text :
-                    document.getElementById('categoriaDespesa').options[document.getElementById('categoriaDespesa').selectedIndex].text;
-                const forma = form.forma.value;
-                const data = form.data.value;
-                const valor = form.valor.value;
-                const descricao = form.descricao.value;
-
-                // Cria o objeto com os dados do lançamento
-                const novoLancamento = {
-                    tipo: tipoLancamento,
-                    categoria: categoriaSelecionada,
-                    forma: forma,
-                    data: data,
-                    valor: valor,
-                    descricao: descricao
-                };
-
-                // Envia os dados do novo lançamento para o backend
-                fetch('/lancamentos', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(novoLancamento)
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erro ao criar lançamento');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Lançamento criado com sucesso:', data);
-                        // Faça o que for necessário com os dados do lançamento criado
-                    })
-                    .catch(error => {
-                        console.error('Erro:', error);
-                    });
-            });
-        });*/
-
-
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('form-lancamento');
 

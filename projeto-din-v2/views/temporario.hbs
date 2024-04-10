@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Intervalo de Datas com Datepicker.js</title>
+    <style>
+        .descricao-col {
+            width: 40%;
+            /* Defina o tamanho desejado para a coluna de descrição */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Conteúdo do Popup -->
+    <div id="popupEvolucoes">
+        <!-- Área dos cards -->
+        <div style="background-color:rgba(0, 0, 255, 0); text-align: right; font-size:20px;">
+            <button id="closeButton"
+                style="border-style: none; border-radius:2px; padding-left:12px; padding-right:12px; background-color:rgb(255, 207, 207); color:rgb(65, 65, 65)">X</button>
+        </div>
+
+
+        <div class="container" style="background-color: rgba(0, 255, 255, 0); padding:0%">
+            <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
+                <div class="col" style="align-self:flex-end">
+                    <h1 style="font-size: 20px;">RECEITAS</h1>
+                </div>
+                <div class="col" style="background-color:rgba(153, 205, 50, 0); text-align:right; display:grid;">
+                    <p style="margin-bottom: 0%;">Escolher data</p>
+                    <input type="date">
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgb(255, 255, 255); margin:1%;">
+                <table class="table table-hover">
+                    <thead>
+                        <tr style="background-color: rgb(139, 201, 187);">
+                            <th scope="col">Data</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Forma de recebimento</th>
+                            <th scope="col" class="descricao-col">Descrição</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">15/02/2024</td>
+                            <td>Receita</td>
+                            <td>Pix</td>
+                            <td>Recebimento de cliente</td>
+                            <td>2.500</td>
+                            <td>
+                                <div class="col d-flex align-items-center"
+                                    style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                    <img src="images/delete.png" alt="delete"
+                                        style="width:40px; height:37px; margin-right:8%;">
+                                    <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td scope="row">12/02/2024</td>
+                            <td>Receita</td>
+                            <td>Dinheiro</td>
+                            <td>Salário do mês</td>
+                            <td>1.500</td>
+                            <td>
+                                <div class="col d-flex align-items-center"
+                                    style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                    <img src="images/delete.png" alt="delete"
+                                        style="width:40px; height:37px; margin-right:8%;">
+                                    <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">12/02/2024</td>
+                            <td>Receita</td>
+                            <td>Dinheiro</td>
+                            <td>Salário do mês</td>
+                            <td>1.500</td>
+                            <td>
+                                <div class="col d-flex align-items-center"
+                                    style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                    <img src="images/delete.png" alt="delete"
+                                        style="width:40px; height:37px; margin-right:8%;">
+                                    <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
+                <div class="col" style="align-self:flex-end">
+                    <h1 style="font-size: 20px;">DESPESAS</h1>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: rgb(255, 255, 255); margin:1%;">
+                <table class="table table-hover">
+                    <thead>
+                        <tr style="background-color: rgb(255, 157, 157);">
+                            <th scope="col">Data</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Forma de recebimento</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">12/02/2024</td>
+                            <td>Receita</td>
+                            <td>Dinheiro</td>
+                            <td>Salário do mês</td>
+                            <td>1.500</td>
+                            <td>
+                                <div class="col d-flex align-items-center"
+                                    style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                    <img src="images/delete.png" alt="delete"
+                                        style="width:40px; height:37px; margin-right:8%;">
+                                    <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td scope="row">12/02/2024</td>
+                            <td>Receita</td>
+                            <td>Dinheiro</td>
+                            <td>Salário do mês</td>
+                            <td>1.500</td>
+                            <td>
+                                <div class="col d-flex align-items-center"
+                                    style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                    <img src="images/delete.png" alt="delete"
+                                        style="width:40px; height:37px; margin-right:8%;">
+                                    <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">12/02/2024</td>
+                            <td>Receita</td>
+                            <td>Dinheiro</td>
+                            <td>Salário do mês</td>
+                            <td>1.500</td>
+                            <td>
+                                <div class="col d-flex align-items-center"
+                                    style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                    <img src="images/delete.png" alt="delete"
+                                        style="width:40px; height:37px; margin-right:8%;">
+                                    <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Variável de estado para controlar se o popup está aberto
+        let popupOpen = false;
+
+        // Função para abrir o popup
+        function openPopup() {
+            document.getElementById('popupEvolucoes').style.display = 'block';
+            popupOpen = true;
+        }
+
+        // Função para fechar o popup
+        function closePopup() {
+            document.getElementById('popupEvolucoes').style.display = 'none';
+            popupOpen = false;
+        }
+
+        // Adiciona um evento de clique ao botão de fechar
+        document.getElementById('closeButton').addEventListener('click', function () {
+            // Fecha o popup quando o botão de fechar é clicado
+            closePopup();
+
+            // Verifica se o popup estava aberto antes de fechar
+            if (popupOpen) {
+                // Redireciona para a página home
+                window.location.href = '/views/home';
+            }
+        });
+    </script>
+
+
+
+</body>
+
+</html>
+
+
+<!--
+
+<div style="background-color: rgba(255, 255, 0, 0); padding: 0%; width: 74%; height: 100%;" id="areaDosCards">
+
+            <div style="background-color:rgba(0, 0, 255, 0); text-align: right; font-size:20px;">
+                <button id="closeButton"
+                    style="border-style: none; border-radius:2px; padding-left:12px; padding-right:12px; background-color:rgb(255, 207, 207); color:rgb(65, 65, 65)">X</button>
+            </div>
+
+
+            <div class="container" style="background-color: rgba(17, 102, 102, 0); padding:0%">
+                <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
+                    <div class="col" style="align-self:flex-end; background-color: #5bcc8e">
+                        <h1 style="font-size: 20px;">RECEITAS</h1>
+                    </div>
+                    <div class="col" style="background-color:rgba(153, 205, 50, 0); text-align:right; display:grid;">
+                        <p style="margin-bottom: 0%;">Escolher data</p>
+                        <input type="date">
+                    </div>
+                </div>
+
+
+                <div class="row" style="background-color: rgb(255, 255, 255); margin:1%;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr style="background-color: #b9b9b9;">
+                                <th scope="col">Data</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Forma de recebimento</th>
+                                <th scope="col" class="descricao-col">Descrição</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">15/02/2024</td>
+                                <td>Receita</td>
+                                <td>Pix</td>
+                                <td>Recebimento de cliente</td>
+                                <td>2.500</td>
+                                <td>
+                                    <div class="col d-flex align-items-center"
+                                        style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                        <img src="images/delete.png" alt="delete"
+                                            style="width:40px; height:37px; margin-right:8%;">
+                                        <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td scope="row">12/02/2024</td>
+                                <td>Receita</td>
+                                <td>Dinheiro</td>
+                                <td>Salário do mês</td>
+                                <td>1.500</td>
+                                <td>
+                                    <div class="col d-flex align-items-center"
+                                        style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                        <img src="images/delete.png" alt="delete"
+                                            style="width:40px; height:37px; margin-right:8%;">
+                                        <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">12/02/2024</td>
+                                <td>Receita</td>
+                                <td>Dinheiro</td>
+                                <td>Salário do mês</td>
+                                <td>1.500</td>
+                                <td>
+                                    <div class="col d-flex align-items-center"
+                                        style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                        <img src="images/delete.png" alt="delete"
+                                            style="width:40px; height:37px; margin-right:8%;">
+                                        <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
+                    <div class="col" style="align-self:flex-end; background-color:#ff9d9d">
+                        <h1 style="font-size: 20px;">DESPESAS</h1>
+                    </div>
+                </div>
+
+                <div class="row" style="background-color: rgb(255, 255, 255); margin:1%;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr style="background-color: #b9b9b9;">
+                                <th scope="col">Data</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Forma de recebimento</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">12/02/2024</td>
+                                <td>Receita</td>
+                                <td>Dinheiro</td>
+                                <td>Salário do mês</td>
+                                <td>1.500</td>
+                                <td>
+                                    <div class="col d-flex align-items-center"
+                                        style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                        <img src="images/delete.png" alt="delete"
+                                            style="width:40px; height:37px; margin-right:8%;">
+                                        <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td scope="row">12/02/2024</td>
+                                <td>Receita</td>
+                                <td>Dinheiro</td>
+                                <td>Salário do mês</td>
+                                <td>1.500</td>
+                                <td>
+                                    <div class="col d-flex align-items-center"
+                                        style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                        <img src="images/delete.png" alt="delete"
+                                            style="width:40px; height:37px; margin-right:8%;">
+                                        <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">12/02/2024</td>
+                                <td>Receita</td>
+                                <td>Dinheiro</td>
+                                <td>Salário do mês</td>
+                                <td>1.500</td>
+                                <td>
+                                    <div class="col d-flex align-items-center"
+                                        style="background-color: rgba(216, 112, 147, 0); display:inline-block;">
+                                        <img src="images/delete.png" alt="delete"
+                                            style="width:40px; height:37px; margin-right:8%;">
+                                        <img src="images/edit.png" alt="delete" style="width:40px; height:37px;">
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+</div> 
+
+-->
