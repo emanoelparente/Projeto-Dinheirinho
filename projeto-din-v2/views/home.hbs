@@ -93,11 +93,14 @@
                             style="font-size: 20px; background-color: rgba(137, 43, 226, 0); margin-bottom: 0%; padding-top:15%;">
                             R$</p>
                     </div>
-                    <div class="col" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
-                        <p
-                            style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%;padding-top:5%;">
-                            520,00</p>
+
+                    <div class="col" id="saldoDiv" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
+                        <p id="saldoAtualP"
+                            style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%; padding-top:5%;">
+
+                        </p>
                     </div>
+
                 </div>
 
             </div>
@@ -182,19 +185,19 @@
                                             <select class="form-select" id="categoriaReceita"
                                                 style="color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
                                                 <option selected>Categoria de receita...</option>
-                                                <option value="1">Salário</option>
-                                                <option value="2">Empréstimo</option>
-                                                <option value="3">Investimento</option>
+                                                <option value="Salário">Salário</option>
+                                                <option value="Empréstimo">Empréstimo</option>
+                                                <option value="Investimento">Investimento</option>
                                             </select>
 
                                             <!-- Select da categoria de despesa -->
                                             <select class="form-select" id="categoriaDespesa"
                                                 style="display: none; color: #0062cc; background-color: white; border: 1px solid #0062cc; border-radius: 5px; padding:6px;">
                                                 <option selected>Categoria de despesa...</option>
-                                                <option value="1">Alimentação</option>
-                                                <option value="2">Saúde</option>
-                                                <option value="3">Lazer</option>
-                                                <option value="3">Educação</option>
+                                                <option value="Alimentação">Alimentação</option>
+                                                <option value="Saúde">Saúde</option>
+                                                <option value="Lazer">Lazer</option>
+                                                <option value="Educação">Educação</option>
                                             </select>
                                         </div>
 
@@ -437,6 +440,8 @@
         document.getElementById('categoriaDespesa').addEventListener('change', function () {
             categoriaSelecionada = this.value;
         });
+
+
     </script>
 
 
@@ -451,9 +456,12 @@
 
                 // Obtém os valores dos campos do formulário
                 const tipoLancamento = document.querySelector('input[name="tipo"]:checked').value;
-                const categoriaSelecionada = (tipoLancamento === 'Receita') ?
-                    document.getElementById('categoriaReceita').options[document.getElementById('categoriaReceita').selectedIndex].text :
-                    document.getElementById('categoriaDespesa').options[document.getElementById('categoriaDespesa').selectedIndex].text;
+
+                const categoriaReceita = document.getElementById('categoriaReceita').value;
+                const categoriaDespesa = document.getElementById('categoriaDespesa').value;
+
+                const categoriaSelecionada = (tipoLancamento === 'Receita') ? categoriaReceita : categoriaDespesa;
+
                 const forma = form.forma.value;
                 const data = form.data.value;
                 const valor = form.valor.value;
@@ -487,19 +495,69 @@
                         console.log('Lançamento criado com sucesso:', data);
                         // Limpa os campos do formulário
                         form.reset();
+                        // Restaura os estilos dos botões para o estado inicial
+                        document.getElementById('btnReceita').click(); // Simula o clique no botão Receita
                         // Exibe a mensagem de sucesso
                         document.getElementById('successMessage').style.display = 'block';
                         // Esconde a mensagem após 3 segundos
                         setTimeout(function () {
                             document.getElementById('successMessage').style.display = 'none';
-                        }, 2500);
+                        }, 2000);
                     })
                     .catch(error => {
                         console.error('Erro:', error);
                     });
             });
         });
+
+
     </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Função para obter o saldo atual e atualizar dinamicamente
+            const obterESaldoAtualizar = () => {
+                fetch('/lancamentos')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Inicializa o total de receitas e despesas
+                        let totalReceita = 0;
+                        let totalDespesa = 0;
+
+                        // Calcula o total de receitas e despesas
+                        data.forEach(lancamento => {
+                            if (lancamento.Tipo_de_lançamento === 'Receita') {
+                                totalReceita += parseFloat(lancamento.Valor);
+                            } else {
+                                totalDespesa += parseFloat(lancamento.Valor);
+                            }
+                        });
+
+                        // Calcula o saldo atual
+                        const saldoAtual = totalReceita - totalDespesa;
+
+                        // Apresenta o saldo atual no elemento HTML
+                        document.getElementById('saldoAtualP').textContent = saldoAtual.toFixed(2);
+                    })
+                    .catch(error => console.error('Erro ao obter os lançamentos:', error));
+            };
+
+            // Chama a função inicialmente
+            obterESaldoAtualizar();
+
+            // Define um intervalo para atualizar o saldo a cada 60 segundos (ou o intervalo desejado)
+            setInterval(obterESaldoAtualizar, 1000); // 60000 milissegundos = 60 segundos
+        });
+
+
+    </script>
+
+
+
+
+
+
 
     <!-- jQuery (obrigatório para o Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

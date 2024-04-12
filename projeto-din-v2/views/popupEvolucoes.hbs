@@ -22,26 +22,6 @@
             margin: 0%;
         }
 
-        .success-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #d4edda;
-            /* Verde claro */
-            color: #155724;
-            /* Verde escuro */
-            padding-top: 32px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            width: 400px;
-            height: 100px;
-            text-align: center;
-            font-size: 20px;
-        }
-
-
         #areaDosCards {
             overflow-y: auto;
             /* Adiciona uma barra de rolagem vertical quando necessário */
@@ -52,10 +32,19 @@
         }
 
         .delete-btn {
-            width: 40px;
+            width: 50px;
             /* Defina o tamanho desejado para as imagens */
-            height: 35px;
+            height: 40px;
             border-style: none;
+            background-color: #2a994f00;
+        }
+
+        .edit-btn {
+            width: 50px;
+            /* Defina o tamanho desejado para as imagens */
+            height: 40px;
+            border-style: none;
+            background-color: #992a2a00;
         }
 
         .delete-btn:hover {
@@ -63,7 +52,15 @@
             /* Altere o cursor para uma mãozinha ao passar o mouse */
         }
 
+        .edit-btn:hover {
+            cursor: pointer;
+            /* Altere o cursor para uma mãozinha ao passar o mouse */
+        }
 
+        #closeButton:hover {
+            cursor: pointer;
+            /* Altere o cursor para uma mãozinha ao passar o mouse */
+        }
     </style>
 
     <title>Document</title>
@@ -120,8 +117,10 @@
                     <div class="col" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
                         <p
                             style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%;padding-top:5%;">
-                            520,00</p>
+                            <span id="saldoAtual">0</span>
+                        </p>
                     </div>
+
                 </div>
 
             </div>
@@ -236,95 +235,17 @@
             </div>
         </div>
 
-        <script>
-            /*document.addEventListener("DOMContentLoaded", function () {
-                const receitasTable = document.getElementById('receitas-table').querySelector('tbody');
-                const despesasTable = document.getElementById('despesas-table').querySelector('tbody');
-
-                fetch('/lancamentos')
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(lancamento => {
-                            const row = document.createElement('tr');
-                            ['Data_de_ocorrencia', 'Categoria', 'Forma', 'Descrição', 'Valor', 'id'].forEach(key => {
-                                const cell = document.createElement('td');
-                                if (key === 'Data_de_ocorrencia') {
-                                    // Converte a data para o formato "dd/mm/aaaa"
-                                    const dataFormatada = new Date(lancamento[key]);
-                                    const dataString = dataFormatada.toLocaleDateString('pt-BR');
-                                    cell.textContent = dataString;
-                                } else {
-                                    cell.textContent = lancamento[key];
-                                }
-                                row.appendChild(cell);
-                            });
-
-                            const actionsCell = document.createElement('td');
-                            actionsCell.innerHTML = `
-                        <div class="col d-flex align-items-center">
-                            <button class="delete-btn" data-id="${lancamento.id}">
-                                <img src="images/delete.png" alt="delete" style="width:20px; height:20px;">
-                            </button>
-                            <img src="images/edit.png" alt="edit" style="width:20px; height:20px;">
-                        </div>
-                    `;
-                            row.appendChild(actionsCell);
-
-                            if (lancamento.Tipo_de_lançamento === 'Receita') {
-                                receitasTable.appendChild(row);
-                            } else {
-                                despesasTable.appendChild(row);
-                            }
-                        });
 
 
-                        // Adiciona evento de clique aos botões de delete
-                        document.querySelectorAll('.delete-btn').forEach(btn => {
-                            btn.addEventListener('click', () => {
-                                const id = btn.getAttribute('data-id');
-                                fetch(`/lancamentos/${id}`, { method: 'DELETE' })
-                                    .then(response => {
-                                        if (response.ok) {
-                                            // Remove a linha da tabela apenas se a exclusão for bem-sucedida
-                                            btn.closest('tr').remove();
-                                        } else {
-                                            throw new Error('Erro ao excluir o lançamento');
-                                        }
-                                    })
-                                    .catch(error => console.error(error));
-                            });
-                        });
+        
 
-                    })
-                    .catch(error => console.error('Erro ao obter os lançamentos:', error));
-            });*/
-
-        </script>
-
-
-        <style>
-            .delete-btn img {
-                width: 24px;
-                /* Defina o tamanho desejado para as imagens */
-                height: 24px;
-            }
-
-            .delete-btn:hover {
-                cursor: pointer;
-                /* Altere o cursor para uma mãozinha ao passar o mouse */
-            }
-
-            /* Ajuste o estilo da borda da lixeira conforme necessário */
-            .delete-btn img.delete-icon {
-                border: none;
-                /* Remova a borda ou ajuste conforme necessário */
-            }
-        </style>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const receitasTable = document.getElementById('receitas-table').querySelector('tbody');
                 const despesasTable = document.getElementById('despesas-table').querySelector('tbody');
+                let totalReceita = 0;
+                let totalDespesa = 0;
 
                 fetch('/lancamentos')
                     .then(response => response.json())
@@ -347,19 +268,23 @@
 
                             const actionsCell = document.createElement('td');
                             actionsCell.innerHTML = `
-                        <div class="col d-flex align-items-center">
-                            <button class="delete-btn">
-                                <img src="images/delete.png" alt="delete" style="width:40px; height:35px;">
-                            </button>
+                    <div class="col d-flex align-items-center">
+                        <button class="delete-btn">
+                            <img src="images/delete.png" alt="delete" style="width:40px; height:35px;">
+                        </button>
+                        <button class="edit-btn">
                             <img src="images/edit.png" alt="edit" style="width:40px; height:35px;">
-                        </div>
-                    `;
+                        </button>
+                    </div>
+                `;
                             row.appendChild(actionsCell);
 
                             if (lancamento.Tipo_de_lançamento === 'Receita') {
                                 receitasTable.appendChild(row);
+                                totalReceita += parseFloat(lancamento.Valor);
                             } else {
                                 despesasTable.appendChild(row);
+                                totalDespesa += parseFloat(lancamento.Valor);
                             }
                         });
 
@@ -370,6 +295,7 @@
                                     .then(response => {
                                         if (response.ok) {
                                             btn.closest('tr').remove();
+                                            updateSaldo();
                                         } else {
                                             throw new Error('Erro ao excluir o lançamento');
                                         }
@@ -378,9 +304,17 @@
                             });
                         });
 
+                        const updateSaldo = () => {
+                            const saldoAtual = totalReceita - totalDespesa;
+                            document.getElementById('saldoAtual').textContent = saldoAtual.toFixed(2);
+                        };
+
+                        updateSaldo();
                     })
                     .catch(error => console.error('Erro ao obter os lançamentos:', error));
             });
+
+
         </script>
 
 
@@ -393,6 +327,10 @@
                 });
             });
         </script>
+
+
+
+
 
 
 

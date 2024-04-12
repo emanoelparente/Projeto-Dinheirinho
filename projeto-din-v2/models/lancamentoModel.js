@@ -2,20 +2,24 @@ const path = require('path');
 const conexao = require(path.join(__dirname, "../app"));
 
 
-class LancamentoModel{
-    listar(){
+class LancamentoModel {
+
+
+    listar() {
         const sql = "SELECT * FROM lançamento";
-        return new Promise ((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             conexao.query(sql, {}, (error, resposta) => {
-                if(error){
+                if (error) {
                     console.log("Deu erro no listar...");
-                    reject (error);
+                    reject(error);
                 }
-                console.log("Showw");
+                console.log("Registrado com sucesso");
                 resolve(resposta);
             });
         });
     }
+
+
 
     buscarPorId(id) {
         const sql = "SELECT * FROM lançamento WHERE id = ?";
@@ -35,11 +39,11 @@ class LancamentoModel{
         });
     }
 
-    criar(novoLancamento){
+    criar(novoLancamento) {
         const sql = "INSERT INTO lançamento SET ?";
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve, reject) => {
             conexao.query(sql, novoLancamento, (error, resposta) => {
-                if(error){
+                if (error) {
                     console.error("Erro ao criar lançamento:", error);
                     reject(error);
                 }
@@ -49,29 +53,29 @@ class LancamentoModel{
         });
     }
 
-    atualizar(lancamentoAtualizado, id){
+    atualizar(lancamentoAtualizado, id) {
         const sql = "UPDATE lançamento SET ? WHERE id = ?";
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve, reject) => {
             conexao.query(sql, [lancamentoAtualizado, id], (error, resposta) => {
-                if(error){
+                if (error) {
                     console.log("Deu erro no atualizar...");
                     reject(error);
                 }
-                console.log("Show..");
+                console.log("Atualizado com sucesso..");
                 resolve(resposta);
             });
         });
     }
 
-    deletar(id){
+    deletar(id) {
         const sql = "DELETE FROM lançamento WHERE id = ?";
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve, reject) => {
             conexao.query(sql, id, (error, resposta) => {
-                if(error){
+                if (error) {
                     console.log("Deu erro no deletar...");
                     reject(error);
                 }
-                console.log("Show..");
+                console.log("Deletado com sucesso..");
                 resolve(resposta);
             });
         });
