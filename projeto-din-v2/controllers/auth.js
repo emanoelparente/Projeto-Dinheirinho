@@ -10,6 +10,8 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+
+
 exports.cadastro = (req, res) => {
     console.log(req.body);
 
