@@ -20,8 +20,8 @@ router.get('/home', (req, res) => {
     res.render('home')
 })
 
-router.get('/popupEvolucoes', (req, res) => {
-    res.render('popupEvolucoes')
+router.get('/evolucoes', (req, res) => {
+    res.render('evolucoes')
 })
 
 /*-----------------------------------*/

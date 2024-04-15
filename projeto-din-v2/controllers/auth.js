@@ -11,7 +11,6 @@ const db = mysql.createConnection({
 });
 
 
-
 exports.cadastro = (req, res) => {
     console.log(req.body);
 
@@ -54,6 +53,7 @@ exports.cadastro = (req, res) => {
 //--------------------------------------------------------------------
 
 exports.login = async (req, res) => {
+
     try {
         const { email, password } = req.body;
 
@@ -75,6 +75,7 @@ exports.login = async (req, res) => {
                     messageErrorEmailPassword: 'Email ou senha está incorreto'
                 });
             } else {
+                console.log(id)
                 /*const id = results[0].id;
                 const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
                     expiresIn: process.env.JWT_EXPIRES_IN
@@ -90,6 +91,7 @@ exports.login = async (req, res) => {
                 res.cookie('jwt', token, cookieOptions);
                 res.status(200).redirect("/home");*/
                 res.render('home')
+                
             }
         });
 
