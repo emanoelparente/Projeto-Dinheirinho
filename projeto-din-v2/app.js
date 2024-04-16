@@ -3,9 +3,13 @@ const path = require('path');
 const mysql = require("mysql");
 const dotenv = require('dotenv');
 
+const cookieParser = require('cookie-parser')
+
+
 dotenv.config({path: './.env'})
 
 const app = express();
+app.use(cookieParser())
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,

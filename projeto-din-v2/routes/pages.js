@@ -1,11 +1,40 @@
+
 const express = require('express');
 const path = require('path');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
+// Função de middleware para verificar o token JWT
+const verifyToken = (req, res, next) => {
+    const token = req.cookies.jwt; // Obtenha o token dos cookies
+
+    // Verifique se o token está presente
+    if (!token) {
+        // Se o token não estiver presente, redirecione para a página de login
+        return res.redirect('/login');
+    }
+
+    // Verifique se o token é válido
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            // Se o token for inválido, redirecione para a página de login
+            return res.redirect('/login');
+        }
+        // Se o token for válido, avance para a próxima função de middleware
+        next();
+    });
+};
+
+// Aplique o middleware de verificação de token JWT às rotas protegidas
+router.get('/home', verifyToken, (req, res) => {
+    res.render('home');
+});
+
+router.get('/evolucoes', verifyToken, (req, res) => {
+    res.render('evolucoes');
+});
 
 const lancamentoController = require("../controllers/lancamentoController");
-
-// Configura o Express para servir arquivos estáticos da pasta 'views'
-router.use(express.static(path.join(__dirname, '../views')));
 
 
 router.get('/', (req, res) => {
@@ -16,17 +45,18 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
-router.get('/home', (req, res) => {
+/*router.get('/home', (req, res) => {
     res.render('home')
-})
+})*/
 
-router.get('/evolucoes', (req, res) => {
+
+/*router.get('/evolucoes', (req, res) => {
     res.render('evolucoes')
-})
+})*/
 
 /*-----------------------------------*/
 
-router.get("/lancamentos/:id", (req, res) => {
+router.get("/lancamentos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     const lancamento = lancamentoController.buscarPorId(id);
     lancamento
@@ -42,7 +72,7 @@ router.get("/lancamentos/:id", (req, res) => {
 
 
 
-router.get("/lancamentos", (req, res) => {
+router.get("/lancamentos", verifyToken, (req, res) => {
     const listaLancamentos = lancamentoController.buscar();
     listaLancamentos
         .then((lancamentos) => res.status(200).json(lancamentos))
@@ -50,7 +80,7 @@ router.get("/lancamentos", (req, res) => {
 });
 
 
-router.post("/lancamentos", (req, res) => {
+router.post("/lancamentos", verifyToken, (req, res) => {
     const novoLancamento = {
         Tipo_de_lançamento: req.body.tipo,
         Categoria: req.body.categoria,
@@ -79,7 +109,7 @@ router.post("/teste", (req, res) => {
 })*/
 
 
-router.put("/lancamentos/:id", (req, res) => {
+router.put("/lancamentos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     const lancamentoAtualizado = req.body;
     const lancamento = lancamentoController.atualizar(lancamentoAtualizado, id);
@@ -102,7 +132,7 @@ router.put("/lancamentos/:id", (req, res) => {
 });*/
 
 
-router.delete("/lancamentos/:id", (req, res) => {
+router.delete("/lancamentos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     lancamentoController.deletar(id)
         .then((resultLancamentoDeletado) => {
