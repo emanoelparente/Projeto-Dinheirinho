@@ -45,6 +45,17 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
+
+// Rota para logout
+router.get('/logout', (req, res) => {
+    // Limpar o cookie JWT
+    res.clearCookie('jwt');
+
+    // Redirecionar o usuário para a página de login
+    res.redirect('/login');
+});
+
+
 /*router.get('/home', (req, res) => {
     res.render('home')
 })*/

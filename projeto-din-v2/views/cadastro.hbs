@@ -32,7 +32,7 @@
             <h1 style="padding-top: 25px; font-size: 25px; font-weight: 600;">Bem vindo de volta!</h1>
             <p style="padding-top: 10px;">Faça Login e tome uma limonada</p>
             <div class="botao-login">
-              <a href="/login"><button type="submit" class="btn btn-primary"
+              <a href="/home"><button type="submit" class="btn btn-primary"
                   style="margin-top: 30px;">LOGIN</button></a>
             </div>
           </div>
@@ -105,7 +105,8 @@
             -->
 
             {{#if messagePasswordNotEquals}}
-            <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">{{messagePasswordNotEquals}}</h4>
+            <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">{{messagePasswordNotEquals}}
+            </h4>
             {{/if}}
 
             {{#if messageExistsEmail}}
@@ -113,7 +114,8 @@
             {{/if}}
 
             {{#if messageRegisterSuccessfull}}
-            <h4 class="alert alert-succes mt-4" style="font-size: 15px; text-align:center">{{messageRegisterSuccessfull}}</h4>
+            <h4 class="alert alert-succes mt-4" style="font-size: 15px; text-align:center">
+              {{messageRegisterSuccessfull}}</h4>
             {{/if}}
 
             <div class="botao">
@@ -131,9 +133,33 @@
 
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Adiciona um evento de clique ao botão de login
+      document.querySelector('.botao-login button').addEventListener('click', function (event) {
+        // Verificar se há uma sessão de usuário ativa
+        const jwtCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+
+        // Se houver um cookie JWT, redirecione para a página home
+        if (jwtCookie) {
+          event.preventDefault(); // Evita o comportamento padrão do botão
+          window.location.href = '/home';
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
 </body>
 
 </html>
