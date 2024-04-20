@@ -1,12 +1,14 @@
 const lancamentoModel = require("../models/lancamentoModel");
 
-class LancamentoController{
+class LancamentoController {
 
-    buscar (){
+
+    buscar() {
         //return "Listando lancamentos....";
         return lancamentoModel.listar();
     }
 
+        
     buscarPorId(id) {
         return lancamentoModel.buscarPorId(id);
     }
@@ -14,6 +16,7 @@ class LancamentoController{
     criar(novoLancamento){
         return lancamentoModel.criar(novoLancamento);
     }
+
 
     atualizar(lancamentoAtualizado, id){
         return lancamentoModel.atualizar(lancamentoAtualizado, id);
