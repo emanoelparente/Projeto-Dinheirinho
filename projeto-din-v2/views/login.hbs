@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
-    <title>Document</title>
+    <link rel="icon" href="/images/ico2.ico" type="image/x-icon">
+    <title>Dinheirinho</title>
 </head>
 
 <body>
@@ -20,11 +21,11 @@
         <!--<div class="row justify-content-md-center" style="background-color: blueviolet; padding-top: 50px;"> -->
 
         <div class="col-md-auto" style="background-color: rgba(0, 0, 255, 0);">
-            <div class="row" style="background-color: rgba(73, 73, 73, 0); margin-top: 4%; ">
+            <div class="row" style="background-color: rgba(179, 47, 47, 0); margin-top: 4%; ">
 
 
                 <div class="col"
-                    style="background-color: #77AF51; padding-top: 9%; padding-bottom: 9%;  padding-right: 8%; padding-left: 8%; margin-left: 100px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                    style="background-color: #77AF51; padding-top: 9%; padding-bottom: 5%;  padding-right: 8%; padding-left: 8%; margin-left: 100px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
                     <div>
                         <h1 style="color: rgb(255, 255, 255); font-size: 25px; font-weight: 600;">Faça login no
                             dinheirinho</h1>
@@ -69,7 +70,9 @@
                                 style="border-left: 0px;">
                         </div>
                         <div>
-                            <a href="#"><p style="font-size: 15px; margin-top: -10px; color:blue;">Recuperar senha</p></a>
+                            <a href="/recuperaSenha">
+                                <p style="font-size: 15px; margin-top: -10px; color:blue;">Recuperar senha</p>
+                            </a>
                         </div>
 
 
@@ -98,6 +101,26 @@
                         <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">
                             {{messageErrorEmailPassword}}</h4>
                         {{/if}}
+
+                        {{#if messageResetPassword}}
+                        <h4 class="alert alert-success mt-4" style="font-size: 15px; text-align:center">
+                            {{messageResetPassword}}</h4>
+                        {{/if}}
+
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const inputElement = document.getElementById('email');
+
+                                inputElement.addEventListener('click', function () {
+                                    const messageElement = document.querySelector('.alert.alert-success');
+                                    if (messageElement) {
+                                        messageElement.style.display = 'none';
+                                    }
+                                });
+                            });
+                        </script>
+
 
 
                         <div class="botao">
