@@ -10,6 +10,113 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/images/ico2.ico" type="image/x-icon">
     <title>Dinheirinho</title>
+
+    <style>
+        #titulo {
+            font-size: 25px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 390px) {
+            #titulo {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 280px) {
+            #titulo {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            #btn-recupera-senha {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            #email {
+                font-size: 13px;
+            }
+        }
+
+        .logo-home {
+            justify-content: center;
+            display: flex;
+        }
+
+        #logo {
+            width: 180px;
+            height: auto;
+        }
+
+
+        @media (max-width: 770px) {
+            #logo {
+                width: 120px;
+                height: auto;
+            }
+        }
+
+
+        .col {
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .col {
+
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+
+            }
+        }
+
+        @media (max-width: 280px) {
+            .col {
+
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+
+            }
+        }
+
+        #form {
+            width: 400px;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            #form {
+
+                width: 300px;
+                height: auto;
+
+            }
+        }
+
+        @media (max-width: 390px) {
+            #form {
+
+                width: 200px;
+                height: auto;
+
+            }
+        }
+
+    </style>
+
+
 </head>
 
 <body>
@@ -17,80 +124,73 @@
     <h4 class="alert alert-success mt-4">{{message}}</h4>
     {{/if}}
 
-    <div class="container" style="background-color: rgba(209, 74, 74, 0); font-family: ;">
-        <!--<div class="row justify-content-md-center" style="background-color: blueviolet; padding-top: 50px;"> -->
+    <div class="row justify-content-center" style="background-color: #b63b3700;%;">
 
-        <div class="col-md-auto" style="background-color: rgba(0, 0, 255, 0);">
-            <div class="row" style="background-color: rgba(73, 73, 73, 0); margin-top: 4%; ">
+        <div class="col" style="background-color: #6fac47;">
 
-
-                <div class="col"
-                    style="background-color: #6fac47; padding-top: 2%; padding-bottom: 5%;  padding-right: 8%; padding-left: 8%; margin-left: 300px; margin-right:300px; margin-top: 8%; border-radius: 20px; border-bottom-left-radius: 20px;">
-
-                    <div style="display: flex; justify-content: center;">
-                        <img src="images/logo-dinheirinho-letra-branca.png" alt="logo" style="width:45%;">
-                    </div>
-
-
-                    <div style="margin-bottom: 10%; margin-top: 5%;">
-                        <h1 style="color: rgb(28, 87, 50); font-size: 25px; font-weight: 600; text-align:center;">
-                            Recuperar senha</h1>
-                    </div>
+            <div class="logo-home">
+                <img src="images/logo-dinheirinho-letra-branca.png" alt="logo" id="logo">
+            </div>
 
 
 
-                    <form action="/recuperaSenha" method="POST">
+            <h1 style="color: rgb(28, 87, 50);" id="titulo">
+                Recuperar senha
+            </h1>
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1" style="background-color: white;"><img
-                                        src="/images/email.png" alt="" style="height: 15px; height: 15px;"></span>
-                            </div>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Email para recuperação" aria-label="Email" aria-describedby="basic-addon1"
-                                style="border-left: 0px;">
+
+            <form action="/recuperaSenha" method="POST" style="background-color: rgba(68, 94, 240, 0);" id="form">
+                <div class="d-flex justify-content-center" style="background-color: rgba(25, 138, 100, 0);">
+                    <div class="input-group mb-3 w-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1" style="background-color: white;">
+                                <img src="/images/email.png" alt="">
+                            </span>
                         </div>
-
-
-                        {{#if messageRegisterSuccessfull}}
-                        <h4 class="alert alert-success mt-4" style="font-size: 15px; text-align:center">
-                            {{messageRegisterSuccessfull}}</h4>
-                        {{/if}}
-
-                        {{#if messageEmptyField}}
-                        <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">
-                            {{messageEmptyField}}</h4>
-                        {{/if}}
-
-                        {{#if messageErrorEmailPassword}}
-                        <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">
-                            {{messageErrorEmailPassword}}</h4>
-                        {{/if}}
-
-
-                        <div class="botao">
-                            <button type="submit" class="btn btn-primary">RECUPERAR SENHA</button>
-                        </div>
-                    </form>
-
-
-
-
-
-                    
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="Email para recuperação" aria-label="Email">
+                    </div>
                 </div>
 
-            </div>
+                {{#if messageRegisterSuccessfull}}
+                <h4 class="alert alert-success mt-4" style="font-size: 15px; text-align:center">
+                    {{messageRegisterSuccessfull}}</h4>
+                {{/if}}
+
+                {{#if messageEmptyField}}
+                <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">
+                    {{messageEmptyField}}</h4>
+                {{/if}}
+
+                {{#if messageErrorEmailPassword}}
+                <h4 class="alert alert-danger mt-4" style="font-size: 15px; text-align:center">
+                    {{messageErrorEmailPassword}}</h4>
+                {{/if}}
+
+                <div class="d-flex justify-content-center">
+                    <div class="botao w-100">
+                        <button type="submit" class="btn btn-primary" id="btn-recupera-senha">RECUPERAR SENHA</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
-        <!--</div> -->
-
     </div>
+
+
+    <!--<div class="container" style="background-color: aqua; padding:2%;" id="container">
+        container
+        <div class="row" style="background-color: blueviolet; padding: 1%">
+            row
+            <div class="col" style="background-color: brown; padding: 1%">
+                col
+            </div>
+        </div>
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-
 
 </body>
 

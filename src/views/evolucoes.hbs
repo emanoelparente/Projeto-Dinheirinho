@@ -8,6 +8,15 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
     <!-- Bootstrap Datepicker CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
@@ -22,14 +31,7 @@
             margin: 0%;
         }
 
-        #areaDosCards {
-            overflow-y: auto;
-            /* Adiciona uma barra de rolagem vertical quando necessário */
-            max-height: 80vh;
-            /* Define a altura máxima da div para 80% da altura da viewport */
-            padding-right: 15px;
-            /* Adiciona espaço para a barra de rolagem */
-        }
+        /********************BOTÕES DE CONTROLE***********************/
 
         .delete-btn {
             width: 50px;
@@ -57,11 +59,18 @@
             /* Altere o cursor para uma mãozinha ao passar o mouse */
         }
 
+        .icon {
+            width: 40px;
+            height: 35px;
+        }
+
+
+        /*****************COMPONENTE NAVBAR***************************/
+
         #closeButton:hover {
             cursor: pointer;
             /* Altere o cursor para uma mãozinha ao passar o mouse */
         }
-
 
         .btn-dropdown-toggle {
             width: 50px;
@@ -83,34 +92,461 @@
             box-shadow: none;
         }
 
+        .custom-btn {
+            font-size: 14px;
+            /* Tamanho da fonte desejado */
+        }
 
+        .custom-btn.active {
+            background-color: #28a745;
+            /* Cor de fundo quando clicado */
+            color: white;
+            /* Cor do texto quando clicado */
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .logo-meio {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Para telas maiores que 1000px */
+        @media (min-width: 900px) {
+            .logo {
+                width: 50%;
+                height: auto;
+            }
+        }
+
+        /* Para telas entre 760px e 1027px */
+
+        @media (min-width: 900px) and (max-width: 1200px) {
+            .logo {
+                width: 60%;
+                height: auto;
+            }
+        }
+
+        /* Telas maiores que 900px */
+        @media (min-width: 901px) {
+            .logo-meio {
+                width: 35%;
+                height: auto;
+            }
+        }
+
+        /* Para telas entre 760px e 900px */
+        @media (min-width: 760px) and (max-width: 900px) {
+            .logo-meio {
+                width: 50%;
+                height: auto;
+            }
+        }
+
+        /* Para telas entre 600px e 760px */
+        @media (min-width: 601px) and (max-width: 759px) {
+            .logo-meio {
+                width: 60%;
+                height: auto;
+            }
+        }
+
+        /* Telas entre 1px e 600px */
+        @media (min-width: 1px) and (max-width: 600px) {
+            .logo-meio {
+                width: calc(100% + ((100vw - 250px) / 50) * 5%);
+                height: auto;
+            }
+        }
+
+        .titulo-nav {
+            font-size: 25px;
+            margin-top: 10px;
+            padding: 0%;
+        }
+
+        /* Para telas maiores que 900px */
+        @media (min-width: 900px) {
+            .titulo-nav {
+                font-size: 25px;
+
+            }
+        }
+
+        /*Para telas menores que 460px*/
+        @media (max-width: 460px) {
+            .titulo-nav {
+                font-size: 18px;
+            }
+        }
+
+
+        /*Para telas menores que 280px*/
+        @media (max-width: 280px) {
+            .titulo-nav {
+                font-size: 15px;
+            }
+        }
+
+
+        /*Para telas menores que 200px*/
+        @media (max-width: 200px) {
+            .titulo-nav {
+                font-size: 12px;
+            }
+        }
+
+        .col-6 {
+            font-size: 30px;
+        }
+
+
+        /* Para telas menores que 400px */
+        @media (max-width: 400px) {
+            .col-6 {
+                font-size: 25px;
+            }
+        }
+
+        /* Para telas menores que 330px */
+        @media (max-width: 330px) {
+            .col-6 {
+                font-size: 20px;
+            }
+        }
+
+        /* Para telas menores que 190px */
+        @media (max-width: 190px) {
+            .col-6 {
+                font-size: 15px;
+            }
+        }
+
+        /* Para telas menores que 140px */
+        @media (max-width: 140px) {
+            .col-6 {
+                font-size: 12px;
+            }
+        }
+
+        /*Para telas menores que 1000px*/
+        @media (max-width: 1000px) {
+            .logo {
+                display: none;
+            }
+
+        }
+
+        /*Para telas maiores que 1000px*/
+        @media (min-width: 1000px) {
+            .logo-meio {
+                display: none;
+            }
+
+        }
+
+        /* Para telas maiores que 1000px */
+        @media (min-width: 1000px) {
+            .btnVoltar {
+                display: none;
+            }
+        }
+
+        /* Para telas menores que 1000px */
+        @media (max-width: 1000px) {
+            .btnVoltar2 {
+                display: none;
+            }
+        }
+
+        /*Para telas maiores que 1000px*/
+        @media (min-width: 1000px) {
+            #btn-menu-2 {
+                display: none;
+            }
+
+        }
+
+        /*Para telas maiores que 1000px*/
+        @media (max-width: 1000px) {
+            #btn-menu-1 {
+                display: none;
+            }
+
+        }
+          
+
+        /*---DIMENSÕES PADRÕES PARA SALDO E LARGURA TOTAL---*/
+        .row-label {
+            display: flex;
+            width: 48%;
+            background-color: #63ce1b00;
+            margin: auto;
+            align-self: left;
+            color: #468856;
+            font-size: 20px;
+        }
+
+        /*Para telas menores que 300px */
+        @media (max-width: 300px) {
+            .row-label {
+                font-size: 15px;
+            }
+
+        }
+
+        /*Para telas menores que 170px*/
+        @media (max-width: 170px) {
+            .row-label {
+                font-size: 12px;
+            }
+
+        }
+
+
+
+        .row-saldo {
+            display: flex;
+            width: 50%;
+            background-color: #689948;
+            padding-bottom: 2%;
+            padding-top: 2%;
+            padding-left: 5%;
+            padding-right: 5%;
+            margin: auto;
+            border-radius: 5px;
+            color: white;
+
+
+        }
+
+        /*DIMENSÕES PARA SALDO QUANDO TELA ESTIVER COM MENOS DE 1000PX*/
+
+        /* Para telas menores que 1000px */
+        @media (max-width: 1000px) {
+            .row-saldo {
+                width: 100%;
+            }
+
+        }
+
+        /* Para telas menores que 600px */
+        @media (max-width: 1000px) {
+            .row-label {
+                width: 100%;
+            }
+        }
+
+        /* Para telas maiores que 1000px */
+        @media (min-width: 1000px) {
+            .row-label {
+                margin-top: -2.5%;
+            }
+        }
+  
+        .card-header {
+            cursor: pointer;
+        }
+
+        .card-header .btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .tabela-receita {
+            border-color: #A9A9A9;
+            border-style: solid;
+            border-width: 1.5px;
+            border-radius: 10px;
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .tabela-despesa {
+            border-color: #A9A9A9;
+            border-style: solid;
+            border-width: 1.5px;
+            border-radius: 10px;
+            margin: 0%;
+            padding: 0%;
+        }
+
+
+        .rounded-top-left {
+            border-top-left-radius: 5px;
+        }
+
+        .rounded-top-right {
+            border-top-right-radius: 5px;
+        }
+
+        .rounded-table {
+            overflow: hidden;
+        }
+
+        .rounded-table thead tr th {
+            border: none;
+        }
+
+        /*Para telas menores que 405px*/
+        @media (max-width: 405px) {
+            .rounded-table {
+                font-size: 12px;
+            }
+        }
+
+        /*Para telas menores que 310px*/
+        @media (max-width: 315px) {
+            .rounded-table {
+                font-size: 10px;
+            }
+        }
+
+
+
+        .container {
+            background-color: #ffffff;
+            border-style: solid;
+            border-width: 1.5px;
+            border-color: #CACACA;
+            border-radius: 5px;
+            font-size: 15px;
+
+        }
+
+        .container h5 {
+            font-size: 15px;
+        }
+
+
+        /*Para telas menores que 405px*/
+        @media (max-width: 405px) {
+            .container h5 {
+                font-size: 12px;
+            }
+        }
+
+        /*Para telas menores que 310px*/
+        @media (max-width: 315px) {
+            .container h5 {
+                font-size: 10px;
+            }
+        }
+
+        .description-header {
+            color: #28a745;
+        }
+
+        .content-box {
+            background-color: #ffffff;
+            border-style: solid;
+            border-width: 1.5px;
+            border-color: #CACACA;
+            border-radius: 5px;
+        }
+
+        .forma-header {
+            color: #28a745;
+            margin-top: 3%;
+        }
+
+
+        .detail-container {
+            background-color: #ffffff;
+            border-style: solid;
+            border-width: 1.5px;
+            border-color: #CACACA;
+            border-radius: 5px;
+            padding: 1rem;
+            /*margin-top: 1rem;*/
+        }
+
+        .detail-container.receita {
+            background-color: #C6E1B3;
+            /* Cor para receitas */
+        }
+
+        .detail-container.despesa {
+            background-color: #F8D7DA;
+            /* Cor para despesas */
+        }
+
+        .description-header,
+        .forma-header {
+            color: #28a745;
+        }
+
+        .detail-content {
+            background-color: #ffffff;
+            border-style: solid;
+            border-width: 1.5px;
+            border-color: #CACACA;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFFFFF;
+            margin-top: 1rem;
+        }
 
     </style>
+
+
     <link rel="icon" href="/images/ico2.ico" type="image/x-icon">
     <title>Dinheirinho</title>
 </head>
 
 
 <body>
-    <nav style="background-color: #77AF51;">
 
-        <div class="row" style="background-color: #06519700; padding-top:1%;">
-            <div class="col" style="background-color: #e3737300; padding-left:5%">
-                <img src="/images/logo-dinheirinho-letra-branca.png" alt="logo"
-                    style="width: 50%; height: 95%; background-color:rgba(165, 42, 42, 0);">
+
+    <nav style="background-color: #77af51; margin: 0%; padding: 0%;">
+
+        <div class="row" style="background-color: #06519700; padding-top: 1%; padding-bottom: 1%; margin: 0%;">
+            <div class="col-3" style="background-color: #36cc3e00; padding-left:5%; display:flex; ">
+                <img src="/images/logo-dinheirinho-letra-branca.png" alt="logo" class="logo"
+                    style="background-color:rgba(165, 42, 149, 0); align-self:center;">
+                <button class="closeButton"
+                    style="border-style: none; border-radius:2px; padding-left:12px; padding-right:12px; background-color:#fc657200;">
+                    <img src="/images/leave-arrow.png" alt="" style="width: 25px; height:auto;" class="btnVoltar">
+                </button>
             </div>
-            <div class="col-6"
-                style="background-color: #5d816500; display:flex; justify-content:center; align-items:center;">
-                <h1 style="font-size: 25px; text-align:center; color:white; ">Controle de Finanças Pessoais</h1>
+            <div class="col-6" style="background-color: #5d816500; display:flex; justify-content:center;">
+                <div class="row">
+                    <div class="row" style="background-color: #0da6ff00; justify-content:center; margin:0%;" id="lg-01">
+                        <img src="/images/logo-dinheirinho-letra-branca.png" alt="logo" class="logo-meio"
+                            style="background-color:rgba(165, 42, 42, 0); align-self:center;">
+                    </div>
+                    <h1 class="titulo-nav" style="text-align:center; color:white; align-self:center">Finanças pessoais
+                    </h1>
+
+                </div>
             </div>
-            
-            <div class="col"
-                style="background-color: #e8b45400; display:flex; justify-content:right; padding-right: 5%">
+
+
+            <div class="col-3"
+                style="background-color: #e8b45400; display:flex; justify-content:right; padding-right: 5%; align-items:center;">
 
                 <button class="btn-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" style="padding:0%; margin:0%" ;>
                     <img src="/images/icon-perfil.png" alt="logo"
-                        style="background-color: rgba(0, 0, 0, 0); width:80%; height:100%;">
+                        style="background-color: rgba(0, 0, 0, 0); width:80%; height:100%;" id="btn-menu-1">
+
+                    <img src="/images/btn-menu.png" alt="logo"
+                        style="background-color: rgba(0, 0, 0, 0); width:80%; height:100%;" id="btn-menu-2">
+
                 </button>
 
 
@@ -121,273 +557,197 @@
                 </div>
             </div>
 
-
-
-
-
-
-
-
         </div>
 
     </nav>
 
-    <div class="row"
-        style="background-color: rgb(255, 255, 255); padding-top: 2%; display: flex; justify-content:center;">
 
 
-        <div class="card" style="width: 20rem; background-color:#37a69200; margin:0%; padding:0%">
-            <div style="background-color: #77AF51; text-align: center; padding-top:8%">
-                <p style="font-weight: 600; font-size: 18px; margin-bottom: 0%; color:rgb(255, 255, 255);">Banco
-                    inter</p>
-                <p style="font-size: 12px; color:rgb(255, 255, 255);">Conta corrente</p>
-            </div>
-
-            <div class="card-body" style="background-color: #C8F4B3; border-bottom: 1px solid #77AF51;">
-
-                <ul style="list-style: none; display: flex; padding:0%;">
-                    <li style="padding-right:25%;">Ag 0001</li>
-                    <li>Conta 0001-01</li>
-                </ul>
-                <p style="margin-bottom: 2%; padding-left: 1%; ">Saldo Atual</p>
-
-                <div class="row"
-                    style="background-color: rgb(255, 255, 255); margin-left: 1%; margin-right:3%; padding-bottom: -15%; border-style: solid;  border-width: 1px; border-radius: 5px; border-color:#77AF51 ">
-                    <div class="col" style="background-color: rgba(255, 255, 0, 0);">
-                        <p
-                            style="font-size: 20px; background-color: rgba(137, 43, 226, 0); margin-bottom: 0%; padding-top:15%;">
-                            R$</p>
-                    </div>
-                    <div class="col" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
-                        <p
-                            style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%;padding-top:5%;">
-                            <span id="saldoAtual">0</span>
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card-body" style="background-color: #C8F4B3; border-bottom: 1px solid #77AF51;">
-
-                <p style="margin-bottom: 2%; padding-left: 1%; ">Saldo final do mês anterior</p>
-
-                <div class="row"
-                    style="background-color: rgb(255, 255, 255); margin-left: 1%; margin-right:3%; padding-bottom: -15%; border-style: solid;  border-width: 1px; border-radius: 5px; border-color:#77AF51 ">
-                    <div class="col" style="background-color: rgba(255, 255, 0, 0);">
-                        <p
-                            style="font-size: 20px; background-color: rgba(137, 43, 226, 0); margin-bottom: 0%; padding-top:15%;">
-                            R$</p>
-                    </div>
-                    <div class="col" style="background-color: rgba(255, 192, 203, 0); padding-top: 0%;">
-                        <p
-                            style="font-size: 30px; background-color: rgba(65, 105, 225, 0); margin-bottom: 0%;padding-top:5%;">
-                            --</p>
-                    </div>
-                </div>
-            </div>
-
-            <p style="padding: 0%; margin-top:6%; margin-bottom: 1%; font-size: 15px">Adicionar mais bancos</p>
-            <div class="card-body"
-                style="display: flex;justify-content: center; background-color:#77AF51; padding:2%; border-radius: 2%;">
-                <img src="/images/icon-add-bank.png" alt="icon">
-            </div>
-        </div>
-
-        <!--Area dos cards -->
-
-        <div style="background-color: rgba(255, 255, 0, 0); padding: 0%; margin-left: 1%; width: 72%; height: 480px; border-style:solid; border-radius:10px; border-color: #77AF51"
-            id="areaDosCards">
-
-            <div style="background-color:rgba(0, 0, 255, 0); text-align: right; font-size:20px;">
-                <button id="closeButton"
-                    style="border-style: none; border-radius:2px; padding-left:12px; padding-right:12px; background-color:rgb(255, 207, 207); color:rgb(65, 65, 65)">X</button>
-            </div>
-
-            <div class="container" style="background-color: rgba(17, 102, 102, 0); padding:0%">
-
-                <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
-                    <div class="col" style="align-self:flex-end; background-color: #5bcc8e00">
-                        <h1 style="font-size: 20px; font-weight:600; color:#2a994f">RECEITAS</h1>
-                    </div>
-                    <div class="col text-right" style="background-color: rgba(153, 205, 50, 0); margin-top: 3%;">
-                        <div style="display: flex; flex-direction: column; align-items: flex-end;">
-                            <p style="margin-bottom: 0;">Escolher data</p>
-                            <input type="date">
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="row"
-                    style="background-color: rgb(255, 255, 255); margin:1%; font-size: 15px; font-weight:300">
-                    <table class="table table-hover" id="receitas-table">
-                        <thead>
-                            <tr style="background-color: #b9b9b9;">
-                                <th scope="col">Data</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Forma de recebimento</th>
-                                <th scope="col" class="descricao-col">Descrição</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Dados de receitas serão inseridos dinamicamente aqui 
-                            
-                            <td>29/03/2024</td>
-                            <td>Salário</td>
-                            <td>Pix</td>
-                            <td>Vamos testar</td>
-                            <td>4125</td>
-                            <td>106</td>
+     <div class="container"
+        style="background-color: #37a69200; padding-left: 5%; padding-right:5%; margin-top:5%; border-style:none;">
 
 
 
+        <button class="closeButton btnVoltar2"
+            style="border-style: none; border-radius:2px; padding-left:12px; padding-right:12px; float:right">
+            <img src="/images/xCloseButton.png" alt="" style="width: 25px; height:auto;">
+        </button>
 
-                            -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="row" style="background-color: rgba(137, 43, 226, 0); margin: 0%;">
-                    <div class="col" style="align-self:flex-end; background-color:#ff9d9d00">
-                        <h1 style="font-size: 20px; font-weight:600; color:#e46868">DESPESAS</h1>
-                    </div>
-                </div>
-
-                <div class="row"
-                    style="background-color: rgb(255, 255, 255); margin:1%; font-size: 15px; font-weight:300">
-                    <table class="table table-hover" id="despesas-table">
-                        <thead>
-                            <tr style="background-color: #b9b9b9;">
-                                <th scope="col">Data</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Forma de pagamento</th>
-                                <th scope="col">Descrição</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Dados de despesas serão inseridos dinamicamente aqui -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="row-label">
+            <div class="col-12" style="background-color: #db4ac300;">Saldo atual</div>
         </div>
 
 
 
-        
-
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const receitasTable = document.getElementById('receitas-table').querySelector('tbody');
-                const despesasTable = document.getElementById('despesas-table').querySelector('tbody');
-                let totalReceita = 0;
-                let totalDespesa = 0;
-
-                fetch('/lancamentos')
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(lancamento => {
-                            const row = document.createElement('tr');
-                            ['Data_de_ocorrencia', 'Categoria', 'Forma', 'Descrição', 'Valor'].forEach(key => {
-                                const cell = document.createElement('td');
-                                if (key === 'Data_de_ocorrencia') {
-                                    const dataFormatada = new Date(lancamento[key]);
-                                    const dataString = dataFormatada.toLocaleDateString('pt-BR');
-                                    cell.textContent = dataString;
-                                } else {
-                                    cell.textContent = lancamento[key];
-                                }
-                                row.appendChild(cell);
-                            });
-
-                            row.setAttribute('data-id', lancamento.Id);
-
-                            const actionsCell = document.createElement('td');
-                            actionsCell.innerHTML = `
-                    <div class="col d-flex align-items-center">
-                        <button class="delete-btn">
-                            <img src="images/delete.png" alt="delete" style="width:40px; height:35px;">
-                        </button>
-                        <button class="edit-btn">
-                            <img src="images/edit.png" alt="edit" style="width:40px; height:35px;">
-                        </button>
-                    </div>
-                `;
-                            row.appendChild(actionsCell);
-
-                            if (lancamento.Tipo_de_lançamento === 'Receita') {
-                                receitasTable.appendChild(row);
-                                totalReceita += parseFloat(lancamento.Valor);
-                            } else {
-                                despesasTable.appendChild(row);
-                                totalDespesa += parseFloat(lancamento.Valor);
-                            }
-                        });
-
-                        document.querySelectorAll('.delete-btn').forEach(btn => {
-                            btn.addEventListener('click', () => {
-                                const id = btn.closest('tr').getAttribute('data-id');
-                                fetch(`/lancamentos/${id}`, { method: 'DELETE' })
-                                    .then(response => {
-                                        if (response.ok) {
-                                            btn.closest('tr').remove();
-                                            updateSaldo();
-                                        } else {
-                                            throw new Error('Erro ao excluir o lançamento');
-                                        }
-                                    })
-                                    .catch(error => console.error(error));
-                            });
-                        });
-
-                        const updateSaldo = () => {
-                            const saldoAtual = totalReceita - totalDespesa;
-                            document.getElementById('saldoAtual').textContent = saldoAtual.toFixed(2);
-                        };
-
-                        updateSaldo();
-                    })
-                    .catch(error => console.error('Erro ao obter os lançamentos:', error));
-            });
-
-
-        </script>
 
 
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const closeButton = document.getElementById('closeButton');
-                closeButton.addEventListener('click', function () {
-                    window.location.href = '/home';
-                });
-            });
-        </script>
+        <div class="row-saldo">
+            <div class="col-6" style="background-color: #4a95db00;">R$</div>
+            <div class="col-6" id="saldoAtual" style="background-color: #5d816500; text-align: right;"> </div>
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- -->
 
     </div>
 
+
+
+    <div class="container" style="background-color: rgba(17, 102, 102, 0); padding:1%; margin-top: 2%">
+        <div class="row" style="background-color: #28a74600; padding:0%; margin-left: 2%; margin-right: 2%">
+            <h2 style="color: #48673A;">RECEITAS</h2>
+            <div class="tabela-receita">
+                <table class="table table-hover rounded-table" id="receitas-table" style="background-color: #2d78da00;">
+                    <thead>
+                        <tr style="background-color: #C2D7B4; color:#48673A">
+                            <th scope="col" class="rounded-top-left">Data</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col" class="rounded-top-right">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="receitas-tbody">
+                        <!-- Dados de receitas serão inseridos dinamicamente aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row"
+            style="background-color: #eb787800; padding:0%; margin-left: 2%; margin-right: 2%; margin-top:2%;">
+            <h2 style="color: #b65353;">DESPESAS</h2>
+            <div class="tabela-despesa">
+                <table class="table table-hover rounded-table" id="despesas-table">
+                    <thead>
+                        <tr style="background-color: #FDDFDF; color:#b65353">
+                            <th scope="col" class="rounded-top-left">Data</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col" class="rounded-top-right">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="despesas-tbody">
+                        <!-- Dados de despesas serão inseridos dinamicamente aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const receitasTbody = document.getElementById('receitas-tbody');
+            const despesasTbody = document.getElementById('despesas-tbody');
+            let totalReceita = 0;
+            let totalDespesa = 0;
+
+            fetch('/lancamentos')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach((lancamento, index) => {
+                        const isReceita = lancamento.Tipo_de_lançamento === 'Receita';
+                        const tbody = isReceita ? receitasTbody : despesasTbody;
+
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${new Date(lancamento.Data_de_ocorrencia).toLocaleDateString('pt-BR')}</td>
+                            <td>${lancamento.Categoria}</td>
+                            <td>R$ ${lancamento.Valor}</td>
+                        `;
+
+                        const detailRow = document.createElement('tr');
+                        detailRow.style.display = 'none';
+                        detailRow.innerHTML = `
+                            <td colspan="3">
+                                <div class="detail-container ${isReceita ? 'receita' : 'despesa'}">
+                                    <h5 class="description-header">Descrição</h5>
+                                    <div class="detail-content">
+                                        ${lancamento.Descrição}
+                                    </div>
+                                    <h5 class="forma-header">Forma de recebimento</h5>
+                                    <div class="detail-content">
+                                        ${lancamento.Forma}
+                                    </div>
+                                    <div class="button-container">
+                                        <button class="delete-btn" data-id="${lancamento.Id}">
+                                            <img src="images/delete.png" alt="delete" class="icon">
+                                        </button>
+                                        <button class="edit-btn" data-id="${lancamento.Id}">
+                                            <img src="images/edit.png" alt="edit" class="icon">
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        `;
+
+                        row.addEventListener('click', () => {
+                            detailRow.style.display = detailRow.style.display === 'none' ? '' : 'none';
+                        });
+
+                        tbody.appendChild(row);
+                        tbody.appendChild(detailRow);
+
+                        if (isReceita) {
+                            totalReceita += parseFloat(lancamento.Valor);
+                        } else {
+                            totalDespesa += parseFloat(lancamento.Valor);
+                        }
+                    });
+
+                    document.querySelectorAll('.delete-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const id = btn.getAttribute('data-id');
+                            fetch(`/lancamentos/${id}`, { method: 'DELETE' })
+                                .then(response => {
+                                    if (response.ok) {
+                                        const parentRow = btn.closest('tr').previousElementSibling;
+                                        btn.closest('tr').remove();
+                                        parentRow.remove();
+                                        updateSaldo();
+                                    } else {
+                                        throw new Error('Erro ao excluir o lançamento');
+                                    }
+                                })
+                                .catch(error => console.error(error));
+                        });
+                    });
+
+                    document.querySelectorAll('.edit-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const id = btn.getAttribute('data-id');
+                            console.log('Editar lançamento com ID:', id);
+                            // Implemente a lógica de edição aqui
+                        });
+                    });
+
+                    const updateSaldo = () => {
+                        const saldoAtual = totalReceita - totalDespesa;
+                        document.getElementById('saldoAtual').textContent = saldoAtual.toFixed(2);
+                    };
+
+                    updateSaldo();
+                })
+                .catch(error => console.error('Erro ao obter os lançamentos:', error));
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const closeButtons = document.querySelectorAll('.closeButton');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    window.location.href = '/home';
+                });
+            });
+        });
+
+    </script> 
 
 
 

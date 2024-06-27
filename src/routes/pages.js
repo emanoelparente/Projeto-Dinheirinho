@@ -33,6 +33,10 @@ const verifyToken = (req, res, next) => {
 };
 
 
+// Aplique o middleware de verificação de token JWT às rotas protegidas
+router.get('/temporario', verifyToken, (req, res) => {
+    res.render('temporario');
+});
 
 // Aplique o middleware de verificação de token JWT às rotas protegidas
 router.get('/home', verifyToken, (req, res) => {
@@ -42,7 +46,7 @@ router.get('/home', verifyToken, (req, res) => {
 
 const transporter = nodemailer.createTransport({
     host: 'smtp-mail.outlook.com',
-    port: 587,
+    port: 587, //587 para false no secure
     secure: false, // true para SSL
     auth: {
         user: 'emanuelparente@live.com',
@@ -53,6 +57,84 @@ const transporter = nodemailer.createTransport({
 router.get('/recuperaSenha', (req, res) => {
     res.render('recuperaSenha');
 });
+
+
+
+/*router.post('/recuperaSenha', (req, res) => {
+    const { email } = req.body;
+    const token = crypto.randomBytes(20).toString('hex');
+    const expiryDate = new Date();
+    expiryDate.setHours(expiryDate.getHours() + 5); // Token válido por 5 horas
+
+    db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+        if (err) {
+            return res.status(500).send('Erro interno do servidor');
+        }
+        if (results.length === 0) {
+            return res.status(404).send('E-mail não encontrado');
+        }
+        const user = results[0];
+        user.resetToken = token;
+        user.resetTokenExpiry = expiryDate;
+        db.query('UPDATE users SET resetToken = ?, resetTokenExpiry = ? WHERE id = ?', [token, expiryDate, user.id], (err) => {
+            if (err) {
+                return res.status(500).send('Erro interno do servidor');
+            }
+
+            // Após armazenar o token no banco de dados, envie o e-mail
+            //const resetPasswordLink = `http://app_1c4b791e-a92f-4f8e-9e4f-acafd633f015/redefinirSenha/${token}`;
+            https://app_1c4b791e-a92f-4f8e-9e4f-acafd633f015/
+            https://app_1c4b791e-a92f-4f8e-9e4f-acafd633f015
+            //const resetPasswordLink = `http://localhost:5000/redefinirSenha/${token}`;
+
+            const resetPasswordLink = `https://dinheirinho.cleverapps.io/redefinirSenha/${token}`;
+
+
+            const mailOptions = {
+                from: {
+                    name: 'Dinheirinho',
+                    address: 'emanuelparente@live.com'
+                },
+                to: user.email,
+                subject: 'Redefinição de Senha',
+
+                html: `
+                    
+                <div style="background-color: #689948; padding: 50px; margin: 0 200px; text-align: center; border-radius: 3px; font-family: 'Poppins', sans-serif;">
+                    <img src="/images/logo-dinheirinho-letra-branca.png" alt="Ilustração" style="max-width: 100%; height: auto;">
+                    <h1 style="color: #fff; font-size: 20px; line-height: 30px; padding-bottom: 30px; padding-top: 20px;">Você solicitou a redefinição de senha no Dinheirinho</h1>
+                    <p style="color: #fff;font-size: 15px;">Por favor, clique no botão abaixo para redefinir sua senha</p>
+                    <a href="${resetPasswordLink}" style="text-decoration: none;">
+                        <button style="background-color: #fff; color: #77AF51; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px;">REDEFINIR SENHA</button>
+                    </a>
+                    <br>
+                    <p style="color: #fff; padding-top: 30px; line-height: 30px; font-size: 15px;">Se o botão acima não estiver funcionando, você pode clicar nesse link logo abaixo: </p>
+                    <div style = "background-color: #fff">${resetPasswordLink}<div>
+                </div>
+            
+                `
+            };
+
+
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.error('Erro ao enviar e-mail:', err);
+                    return res.status(500).send('Erro ao enviar e-mail de recuperação de senha');
+                } else {
+                    console.log('E-mail enviado:', info.response);
+                    /*return res.status(200).render('login', {
+                        messageResetPassword: 'Verifique seu e-mail, um link de redefinição de senha foi enviado'
+                        
+                    });*/
+/*return res.status(200).render('login', {
+    messageResetPassword: `Verifique seu e-mail, um link de redefinição de senha foi enviado para ${resetPasswordLink}`
+});
+
+}
+});
+});
+});
+});*/
 
 
 
@@ -78,8 +160,10 @@ router.post('/recuperaSenha', (req, res) => {
             }
 
             // Após armazenar o token no banco de dados, envie o e-mail
-            const resetPasswordLink = `http://localhost:5000/redefinirSenha/${token}`;
 
+            const resetPasswordLink = `https://www.appdinheirinho.com.br/redefinirSenha/${token}`;
+            
+            
             const mailOptions = {
                 from: {
                     name: 'Dinheirinho',
@@ -87,23 +171,34 @@ router.post('/recuperaSenha', (req, res) => {
                 },
                 to: user.email,
                 subject: 'Redefinição de Senha',
-                text: `Você solicitou a redefinição de senha. Clique no link para redefinir sua senha: ${resetPasswordLink}`,
-                html: `
-                    
-                <div style="background-color: #689948; padding: 50px; margin: 0 200px; text-align: center; border-radius: 3px; font-family: 'Poppins', sans-serif;">
-                    <img src="/images/logo-dinheirinho-letra-branca.png" alt="Ilustração" style="max-width: 100%; height: auto;">
-                    <h1 style="color: #fff; font-size: 20px; line-height: 30px; padding-bottom: 30px; padding-top: 20px;">Você solicitou a redefinição de senha no Dinheirinho</h1>
-                    <p style="color: #fff;font-size: 15px;">Por favor, clique no botão abaixo para redefinir sua senha</p>
-                    <a href="${resetPasswordLink}" style="text-decoration: none;">
-                        <button style="background-color: #fff; color: #77AF51; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px;">REDEFINIR SENHA</button>
-                    </a>
-                    <br>
-                    <p style="color: #fff; padding-top: 30px; line-height: 30px; font-size: 15px;">Se o botão acima não estiver funcionando, você pode clicar nesse link logo abaixo: </p>
-                    <div style = "background-color: #fff">${resetPasswordLink}<div>
-                </div>
-            
-                `
+                html: `<div style="background-color: #689948; padding: 50px; margin: 0 200px; text-align: center; border-radius: 3px; font-family: 'Poppins', sans-serif;">
+                        <img src="/images/logo-dinheirinho-letra-branca.png" alt="Ilustração" style="max-width: 100%; height: auto;">
+                        <h1 style="color: #fff; font-size: 20px; line-height: 30px; padding-bottom: 30px; padding-top: 20px;">Você solicitou a redefinição de senha no Dinheirinho</h1>
+                        <p style="color: #fff;font-size: 15px;">Por favor, clique no botão abaixo para redefinir sua senha</p>
+                        <a href="${resetPasswordLink}" style="text-decoration: none;">
+                            <button style="background-color: #fff; color: #77AF51; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 17px;">REDEFINIR SENHA</button>
+                        </a>
+                        <br>
+                        <p style="color: #fff; padding-top: 30px; line-height: 30px; font-size: 15px;">Se o botão acima não estiver funcionando, você pode clicar nesse link logo abaixo: </p>
+                        <div style = "background-color: #fff">${resetPasswordLink}<div>
+                    </div>`
+                
             };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             transporter.sendMail(mailOptions, (err, info) => {
@@ -112,14 +207,36 @@ router.post('/recuperaSenha', (req, res) => {
                     return res.status(500).send('Erro ao enviar e-mail de recuperação de senha');
                 } else {
                     console.log('E-mail enviado:', info.response);
+
+                    // Renderiza a página de login com a mensagem informando sobre o envio do link de redefinição de senha
                     return res.status(200).render('login', {
-                        messageResetPassword: 'Verifique seu e-mail, um link de redefinição de senha foi enviado'
+                        messageResetPassword: `Verifique seu e-mail, um link de redefinição de senha foi enviado para ${user.email}`
                     });
                 }
             });
         });
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/redefinirSenha/:token', (req, res) => {
     res.render('redefinirSenha');

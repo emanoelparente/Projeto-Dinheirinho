@@ -1,4 +1,4 @@
-body{
+body {
     /*background-color: antiquewhite;*/
     background-image: url('../images/tela-inicial-fundo.svg');
     background-repeat: no-repeat;
@@ -6,55 +6,65 @@ body{
     background-size: cover;
     background-position: center;
     font-family: 'Poppins';
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.area-login img{
-    max-width:200px;
-    max-height:150px;
+.area-login img {
+    max-width: 200px;
+    max-height: 150px;
     width: auto;
     height: auto;
 }
 
-.botao button{
+.botao button {
     width: 80%;
     border-radius: 100px;
     background-color: #1B512D;
     border: 0px;
-    
+
 }
-.botao{
+
+.botao {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 
-.botao-login button{
+.botao-login button {
     width: 100%;
     border-radius: 100px;
     background-color: #55A630;
     border: 0px;
     padding-left: 50px;
     padding-right: 50px;
-    
+
 }
-.botao-login{
+
+.botao-login {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.botao-registre button{
+.botao-registre button {
     width: 100%;
     border-radius: 100px;
     background-color: #55A630;
     border: 0px;
     padding-left: 50px;
     padding-right: 50px;
-    
-    
+
+
 }
-.botao-registre{
+
+.botao-registre {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -64,7 +74,6 @@ body{
 
 /********************************/
 
-.area-login{
+.area-login {
     text-align: center;
 }
-

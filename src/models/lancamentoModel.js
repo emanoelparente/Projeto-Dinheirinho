@@ -13,7 +13,7 @@ class LancamentoModel {
                     console.log("Deu erro no listar...");
                     reject(error);
                 }
-                console.log("Registrado com sucesso");
+                console.log("Registrado com sucesso...");
                 resolve(resposta);
             });
         });
