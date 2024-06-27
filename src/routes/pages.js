@@ -235,12 +235,14 @@ router.post('/recuperaSenha', (req, res) => {
 
 
 
-
-
-
-router.get('/redefinirSenha/:token', (req, res) => {
+/*router.get('/redefinirSenha', (req, res) => {
     res.render('redefinirSenha');
-});
+});*/
+
+
+/*router.get('/redefinirSenha/:token', (req, res) => {
+    res.render('redefinirSenha');
+});*/
 
 router.post('/redefinirSenha/:token', (req, res) => {
     const { token } = req.params;
