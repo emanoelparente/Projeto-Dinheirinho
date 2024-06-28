@@ -142,3 +142,12 @@
     }
   }
 
+.area-login h1{
+  padding-top: 25px; 
+  font-size: 25px; 
+  font-weight: 600;
+}
+
+.area-login p {
+  padding-top: 10px;
+}
